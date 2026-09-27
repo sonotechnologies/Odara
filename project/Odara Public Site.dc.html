@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Be+Vietnam+Pro:wght@300;400;500&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#E7E1D6;color:#1D1B17;font-family:'Be Vietnam Pro',sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}a:hover{color:#474E31}*{box-sizing:border-box}</style>
+</helmet>
+<section style="padding:64px;display:flex;flex-direction:column;gap:32px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap">
+    <div style="font-family:'EB Garamond',serif;font-size:40px">Public site · mobile</div>
+    <div style="display:flex;gap:16px;font-size:14px;color:#474E31"><a href="Odara Design System.dc.html">Design system</a><a href="Odara Booking.dc.html">Booking flow</a><a href="Odara Studio.dc.html">Studio</a></div>
+  </div>
+  <div style="display:flex;gap:48px;align-items:flex-start;flex-wrap:wrap">
+
+    <!-- 01 HOME -->
+    <div style="display:flex;flex-direction:column;gap:12px" data-screen-label="01 Home">
+      <div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#5E574C">01 · Home</div>
+      <div style="width:375px;background:#F4EFE6;display:flex;flex-direction:column">
+        <div style="height:64px;padding:0 24px;display:flex;align-items:center;justify-content:space-between">
+          <div style="font-family:'EB Garamond',serif;font-size:26px;line-height:1.2">Ọdàrà</div>
+          <div style="display:flex;gap:20px;font-size:14px"><span style="border-bottom:1px solid #1D1B17">Book</span><span>Menu</span></div>
+        </div>
+        <div style="padding:56px 24px 40px;display:flex;flex-direction:column;gap:20px">
+          <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">Lekki Phase 1, Lagos</div>
+          <div style="font-family:'EB Garamond',serif;font-size:88px;line-height:1.1;letter-spacing:-0.01em">Ọdàrà</div>
+          <div style="font-size:17px;font-weight:300;line-height:1.6;max-width:280px;text-wrap:pretty">Hair, nails and lashes, done slowly and done well.</div>
+          <div style="display:flex;gap:16px;align-items:center;margin-top:8px">
+            <div style="height:52px;padding:0 28px;background:#1D1B17;color:#F4EFE6;border-radius:2px;display:flex;align-items:center;font-size:15px;font-weight:500">Book a chair</div>
+            <div style="font-size:14px;border-bottom:1px solid #1D1B17;padding-bottom:2px">Services</div>
+          </div>
+        </div>
+        <div style="height:460px;background:repeating-linear-gradient(135deg,#E1D8C8 0 1px,#EBE4D8 1px 9px);display:flex;align-items:flex-end;padding:14px;font:11px/1.5 ui-monospace,monospace;color:#6E665A">hero · silk press catching window light, close crop from the side, warm late-morning tone</div>
+        <div style="padding:72px 24px;display:flex;flex-direction:column;gap:16px">
+          <div style="font-family:'EB Garamond',serif;font-size:30px;line-height:1.25;text-wrap:pretty">A small studio with five chairs and good light.</div>
+          <div style="font-size:15px;font-weight:300;line-height:1.7;color:#3D3830;text-wrap:pretty">We take one client per stylist at a time, so nobody is rushed. Come in, sit down, and let the work take the time it needs.</div>
+        </div>
+        <div style="padding:0 24px 72px;display:flex;flex-direction:column">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;padding-bottom:16px"><div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">Services</div><div style="font-size:13px;border-bottom:1px solid #1D1B17">Full menu</div></div>
+          <sc-for list="{{ featured }}" as="s" hint-placeholder-count="4">
+            <div style="display:flex;flex-direction:column;gap:4px;padding:18px 0;border-top:1px solid #DAD1C1">
+              <div style="display:flex;align-items:baseline;gap:10px"><div style="font-family:'EB Garamond',serif;font-size:22px">{{ s.name }}</div><div style="flex:1;border-bottom:1px dotted #BFB5A3;transform:translateY(-5px)"></div><div style="font-size:15px">{{ s.price }}</div></div>
+              <div style="font-size:13px;color:#5E574C">{{ s.dur }} · {{ s.dep }} to hold</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="padding:0 0 72px;display:flex;flex-direction:column;gap:20px">
+          <div style="padding:0 24px;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">Stylists</div>
+          <div style="display:flex;gap:12px;overflow:hidden;padding-left:24px">
+            <sc-for list="{{ stylists }}" as="p" hint-placeholder-count="5">
+              <div style="flex:0 0 150px;display:flex;flex-direction:column;gap:10px">
+                <div style="height:190px;background:repeating-linear-gradient(135deg,#E1D8C8 0 1px,#EBE4D8 1px 9px);display:flex;align-items:flex-end;padding:10px;font:10px/1.4 ui-monospace,monospace;color:#6E665A">portrait · {{ p.name }}</div>
+                <div style="display:flex;flex-direction:column;gap:2px"><div style="font-family:'EB Garamond',serif;font-size:20px">{{ p.name }}</div><div style="font-size:12px;color:#5E574C;line-height:1.4">{{ p.spec }}</div></div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="padding:0 24px 72px;display:flex;flex-direction:column;gap:20px">
+          <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">Recent work</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <div style="grid-row:span 2;height:328px;background:repeating-linear-gradient(135deg,#E1D8C8 0 1px,#EBE4D8 1px 9px);display:flex;align-items:flex-end;padding:10px;font:10px/1.4 ui-monospace,monospace;color:#6E665A">knotless braids, back view, soft shadow</div>
+            <div style="height:160px;background:repeating-linear-gradient(135deg,#E1D8C8 0 1px,#EBE4D8 1px 9px);display:flex;align-items:flex-end;padding:10px;font:10px/1.4 ui-monospace,monospace;color:#6E665A">hands, fresh gel nails on linen</div>
+            <div style="height:160px;background:repeating-linear-gradient(135deg,#E1D8C8 0 1px,#EBE4D8 1px 9px);display:flex;align-items:flex-end;padding:10px;font:10px/1.4 ui-monospace,monospace;color:#6E665A">lashes, eyes closed, macro</div>
+            <div style="grid-column:span 2;height:200px;background:repeating-linear-gradient(135deg,#E1D8C8 0 1px,#EBE4D8 1px 9px);display:flex;align-items:flex-end;padding:10px;font:10px/1.4 ui-monospace,monospace;color:#6E665A">locs, retwisted, texture detail in side light</div>
+          </div>
+        </div>
+        <div style="background:#EBE4D8;padding:72px 24px;display:flex;flex-direction:column;gap:32px">
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">How booking works</div>
+            <div style="font-family:'EB Garamond',serif;font-size:30px;line-height:1.25;text-wrap:pretty">Your deposit holds your chair. The rest is paid on the day.</div>
+          </div>
+          <sc-for list="{{ steps }}" as="st" hint-placeholder-count="3">
+            <div style="display:grid;grid-template-columns:40px 1fr;gap:12px;border-top:1px solid #DAD1C1;padding-top:20px">
+              <div style="font-family:'EB Garamond',serif;font-size:26px;color:#474E31;line-height:1">{{ st.n }}</div>
+              <div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:16px;font-weight:500">{{ st.title }}</div><div style="font-size:14px;font-weight:300;line-height:1.6;color:#3D3830">{{ st.body }}</div></div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="padding:72px 24px;display:flex;flex-direction:column;gap:20px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">Our promise, and yours</div><div style="font-size:13px;border-bottom:1px solid #1D1B17">Full policy</div></div>
+          <sc-for list="{{ policy }}" as="po" hint-placeholder-count="4">
+            <div style="display:flex;flex-direction:column;gap:4px;border-top:1px solid #DAD1C1;padding-top:14px">
+              <div style="font-size:12px;color:#5E574C">{{ po.when }}</div>
+              <div style="font-size:15px;line-height:1.5">{{ po.what }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="padding:0 24px 72px;display:flex;flex-direction:column;gap:20px">
+          <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">Hours</div>
+          <div style="display:flex;flex-direction:column">
+            <sc-for list="{{ hours }}" as="h" hint-placeholder-count="3">
+              <div style="display:flex;justify-content:space-between;padding:12px 0;border-top:1px solid #DAD1C1;font-size:15px;color:{{ h.color }}"><span>{{ h.d }}</span><span>{{ h.t }}</span></div>
+            </sc-for>
+          </div>
+          <div style="height:180px;background:repeating-linear-gradient(135deg,#E1D8C8 0 1px,#EBE4D8 1px 9px);display:flex;align-items:flex-end;padding:10px;font:10px/1.4 ui-monospace,monospace;color:#6E665A;margin-top:12px">map · Lekki Phase 1, muted monochrome style</div>
+          <div style="font-size:15px;line-height:1.6">Lekki Phase 1, Lagos<br><span style="color:#5E574C;font-size:14px">Parking on site. Directions sent with your booking.</span></div>
+        </div>
+        <div style="background:#1D1B17;color:#F4EFE6;padding:56px 24px 40px;display:flex;flex-direction:column;gap:32px">
+          <div style="font-family:'EB Garamond',serif;font-size:48px;line-height:1.15">Ọdàrà</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:14px;font-weight:300"><span>Services</span><span>Instagram</span><span>Stylists</span><span>WhatsApp</span><span>Policy</span><span>Manage booking</span></div>
+          <div style="font-size:12px;color:#A39B8C">© 2026 Ọdàrà, Lekki Phase 1, Lagos</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 SERVICES -->
+    <div style="display:flex;flex-direction:column;gap:12px" data-screen-label="02 Services">
+      <div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#5E574C">02 · Services</div>
+      <div style="width:375px;background:#F4EFE6;display:flex;flex-direction:column;padding-bottom:48px">
+        <div style="height:64px;padding:0 24px;display:flex;align-items:center;justify-content:space-between">
+          <div style="font-family:'EB Garamond',serif;font-size:26px;line-height:1.2">Ọdàrà</div>
+          <div style="display:flex;gap:20px;font-size:14px"><span style="border-bottom:1px solid #1D1B17">Book</span><span>Menu</span></div>
+        </div>
+        <div style="padding:48px 24px 16px;display:flex;flex-direction:column;gap:12px">
+          <div style="font-family:'EB Garamond',serif;font-size:48px;line-height:1.1">Services</div>
+          <div style="font-size:14px;font-weight:300;line-height:1.6;color:#3D3830">Prices include products. The deposit is 30% and comes off your total.</div>
+        </div>
+        <sc-for list="{{ menu }}" as="cat" hint-placeholder-count="3">
+          <div style="padding:40px 24px 0;display:flex;flex-direction:column">
+            <div style="display:flex;align-items:baseline;gap:12px;padding-bottom:12px"><div style="font-family:'EB Garamond',serif;font-size:15px;font-style:italic;color:#474E31">{{ cat.num }}</div><div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase">{{ cat.name }}</div></div>
+            <sc-for list="{{ cat.items }}" as="s" hint-placeholder-count="3">
+              <div style="display:flex;flex-direction:column;gap:4px;padding:16px 0;border-top:1px solid #DAD1C1">
+                <div style="display:flex;align-items:baseline;gap:10px"><div style="font-family:'EB Garamond',serif;font-size:21px">{{ s.name }}</div><div style="flex:1;border-bottom:1px dotted #BFB5A3;transform:translateY(-5px)"></div><div style="font-size:15px">{{ s.price }}</div></div>
+                <div style="display:flex;justify-content:space-between;font-size:13px;color:#5E574C"><span>{{ s.dur }}</span><span>{{ s.dep }} to hold</span></div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-for>
+        <div style="margin:48px 24px 0;height:52px;background:#1D1B17;color:#F4EFE6;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:500">Book a chair</div>
+      </div>
+    </div>
+
+    <!-- 03 STYLISTS -->
+    <div style="display:flex;flex-direction:column;gap:12px" data-screen-label="03 Stylists">
+      <div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#5E574C">03 · Stylists</div>
+      <div style="width:375px;background:#F4EFE6;display:flex;flex-direction:column;padding-bottom:48px">
+        <div style="height:64px;padding:0 24px;display:flex;align-items:center;justify-content:space-between">
+          <div style="font-family:'EB Garamond',serif;font-size:26px;line-height:1.2">Ọdàrà</div>
+          <div style="display:flex;gap:20px;font-size:14px"><span style="border-bottom:1px solid #1D1B17">Book</span><span>Menu</span></div>
+        </div>
+        <div style="padding:48px 24px 24px"><div style="font-family:'EB Garamond',serif;font-size:48px;line-height:1.1">Stylists</div></div>
+        <sc-for list="{{ stylists }}" as="p" hint-placeholder-count="5">
+          <div style="padding:24px 24px 32px;display:grid;grid-template-columns:128px 1fr;gap:20px;border-top:1px solid #DAD1C1;margin:0 24px;padding-left:0;padding-right:0">
+            <div style="height:164px;background:repeating-linear-gradient(135deg,#E1D8C8 0 1px,#EBE4D8 1px 9px);display:flex;align-items:flex-end;padding:8px;font:10px/1.4 ui-monospace,monospace;color:#6E665A">portrait, natural light</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="font-family:'EB Garamond',serif;font-size:26px;line-height:1.1">{{ p.name }}</div>
+              <div style="font-size:13px;color:#474E31">{{ p.spec }}</div>
+              <div style="font-size:13px;line-height:1.7;color:#3D3830">{{ p.services }}</div>
+              <div style="font-size:13px;border-bottom:1px solid #1D1B17;align-self:flex-start;margin-top:4px">Book with {{ p.name }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <!-- 04 POLICY -->
+    <div style="display:flex;flex-direction:column;gap:12px" data-screen-label="04 Policy">
+      <div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#5E574C">04 · Policy</div>
+      <div style="width:375px;background:#F4EFE6;display:flex;flex-direction:column;padding-bottom:56px">
+        <div style="height:64px;padding:0 24px;display:flex;align-items:center;justify-content:space-between">
+          <div style="font-family:'EB Garamond',serif;font-size:26px;line-height:1.2">Ọdàrà</div>
+          <div style="display:flex;gap:20px;font-size:14px"><span style="border-bottom:1px solid #1D1B17">Book</span><span>Menu</span></div>
+        </div>
+        <div style="padding:48px 24px 32px;display:flex;flex-direction:column;gap:16px">
+          <div style="font-family:'EB Garamond',serif;font-size:48px;line-height:1.1">Deposits &amp; cancelling</div>
+          <div style="font-size:15px;font-weight:300;line-height:1.7;color:#3D3830;text-wrap:pretty">A deposit is a promise from both sides. You promise to come; we promise your chair and your stylist are ready. It is 30% of the service and comes off your total.</div>
+        </div>
+        <div style="margin:0 24px;display:flex;flex-direction:column">
+          <sc-for list="{{ policyFull }}" as="po" hint-placeholder-count="4">
+            <div style="display:flex;flex-direction:column;gap:8px;padding:20px 0;border-top:1px solid #DAD1C1">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><div style="font-family:'EB Garamond',serif;font-size:22px">{{ po.when }}</div><div style="font-size:12px;font-weight:500;color:{{ po.tone }};white-space:nowrap">{{ po.tag }}</div></div>
+              <div style="font-size:14px;line-height:1.6;color:#3D3830">{{ po.what }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="margin:32px 24px 0;padding:20px;background:#EBE4D8;font-size:14px;line-height:1.6">Running late? Message us on WhatsApp. We hold your chair for 15 minutes, then we may need to shorten or move the service.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:0 64px 96px;display:flex;flex-direction:column;gap:32px">
+  <div style="font-family:'EB Garamond',serif;font-size:40px">Public site · desktop</div>
+  <div style="display:flex;flex-direction:column;gap:64px">
+
+    <!-- D1 HOME -->
+    <div style="display:flex;flex-direction:column;gap:12px" data-screen-label="D1 Home desktop">
+      <div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#5E574C">01 · Home · 1440</div>
+      <div style="width:1440px;background:#F4EFE6;display:flex;flex-direction:column">
+        <div style="height:88px;padding:0 64px;display:flex;align-items:center;justify-content:space-between">
+          <div style="font-family:'EB Garamond',serif;font-size:30px;line-height:1.2">Ọdàrà</div>
+          <div style="display:flex;gap:40px;font-size:14px;align-items:center"><span>Services</span><span>Stylists</span><span>Policy</span><span>Visit</span><span style="height:44px;padding:0 22px;background:#1D1B17;color:#F4EFE6;border-radius:2px;display:flex;align-items:center;font-weight:500">Book</span></div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:64px;padding:48px 64px 120px;align-items:end">
+          <div style="display:flex;flex-direction:column;gap:28px;padding-bottom:24px">
+            <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">Lekki Phase 1, Lagos</div>
+            <div style="font-family:'EB Garamond',serif;font-size:184px;line-height:1.1;letter-spacing:-0.02em;margin-left:-8px">Ọdàrà</div>
+            <div style="font-size:20px;font-weight:300;line-height:1.6;max-width:380px">Hair, nails and lashes, done slowly and done well.</div>
+            <div style="display:flex;gap:24px;align-items:center;margin-top:8px">
+              <div style="height:56px;padding:0 32px;background:#1D1B17;color:#F4EFE6;border-radius:2px;display:flex;align-items:center;font-size:15px;font-weight:500">Book a chair</div>
+              <div style="font-size:15px;border-bottom:1px solid #1D1B17;padding-bottom:2px">See services</div>
+            </div>
+          </div>
+          <div style="height:680px;background:repeating-linear-gradient(135deg,#E1D8C8 0 1px,#EBE4D8 1px 9px);display:flex;align-items:flex-end;padding:18px;font:12px/1.5 ui-monospace,monospace;color:#6E665A">hero · silk press catching window light, close crop from the side, warm late-morning tone</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:64px;padding:0 64px 140px">
+          <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C;padding-top:12px">The studio</div>
+          <div style="display:flex;flex-direction:column;gap:20px;max-width:620px">
+            <div style="font-family:'EB Garamond',serif;font-size:44px;line-height:1.2;text-wrap:pretty">A small studio with five chairs and good light.</div>
+            <div style="font-size:17px;font-weight:300;line-height:1.7;color:#3D3830">We take one client per stylist at a time, so nobody is rushed. Come in, sit down, and let the work take the time it needs.</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:64px;padding:0 64px 140px">
+          <div style="display:flex;flex-direction:column;gap:16px;padding-top:12px">
+            <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">Services</div>
+            <div style="font-size:14px;border-bottom:1px solid #1D1B17;align-self:flex-start">Full menu</div>
+          </div>
+          <div style="display:flex;flex-direction:column">
+            <sc-for list="{{ featured }}" as="s" hint-placeholder-count="4">
+              <div style="display:flex;align-items:baseline;gap:16px;padding:24px 0;border-top:1px solid #DAD1C1">
+                <div style="font-family:'EB Garamond',serif;font-size:30px">{{ s.name }}</div>
+                <div style="font-size:14px;color:#5E574C">{{ s.dur }}</div>
+                <div style="flex:1;border-bottom:1px dotted #BFB5A3;transform:translateY(-6px)"></div>
+                <div style="font-size:14px;color:#5E574C">{{ s.dep }} to hold</div>
+                <div style="font-size:18px;width:110px;text-align:right">{{ s.price }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="padding:0 64px 140px;display:flex;flex-direction:column;gap:32px">
+          <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">Stylists</div>
+          <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px">
+            <sc-for list="{{ stylists }}" as="p" hint-placeholder-count="5">
+              <div style="display:flex;flex-direction:column;gap:14px">
+                <div style="height:340px;background:repeating-linear-gradient(135deg,#E1D8C8 0 1px,#EBE4D8 1px 9px);display:flex;align-items:flex-end;padding:12px;font:11px/1.4 ui-monospace,monospace;color:#6E665A">portrait · {{ p.name }}</div>
+                <div style="display:flex;flex-direction:column;gap:4px"><div style="font-family:'EB Garamond',serif;font-size:26px">{{ p.name }}</div><div style="font-size:13px;color:#5E574C">{{ p.spec }}</div></div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="padding:0 64px 140px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px">
+          <div style="grid-column:span 5;height:620px;background:repeating-linear-gradient(135deg,#E1D8C8 0 1px,#EBE4D8 1px 9px);display:flex;align-items:flex-end;padding:12px;font:11px/1.4 ui-monospace,monospace;color:#6E665A">knotless braids, back view, soft shadow</div>
+          <div style="grid-column:span 7;display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div style="height:302px;background:repeating-linear-gradient(135deg,#E1D8C8 0 1px,#EBE4D8 1px 9px);display:flex;align-items:flex-end;padding:12px;font:11px/1.4 ui-monospace,monospace;color:#6E665A">hands, fresh gel nails on linen</div>
+            <div style="height:302px;background:repeating-linear-gradient(135deg,#E1D8C8 0 1px,#EBE4D8 1px 9px);display:flex;align-items:flex-end;padding:12px;font:11px/1.4 ui-monospace,monospace;color:#6E665A">lashes, eyes closed, macro</div>
+            <div style="grid-column:span 2;height:302px;background:repeating-linear-gradient(135deg,#E1D8C8 0 1px,#EBE4D8 1px 9px);display:flex;align-items:flex-end;padding:12px;font:11px/1.4 ui-monospace,monospace;color:#6E665A">locs, retwisted, texture detail in side light</div>
+          </div>
+        </div>
+        <div style="background:#EBE4D8;padding:120px 64px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:64px">
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">How booking works</div>
+            <div style="font-family:'EB Garamond',serif;font-size:44px;line-height:1.2;text-wrap:pretty;max-width:460px">Your deposit holds your chair. The rest is paid on the day.</div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px">
+            <sc-for list="{{ steps }}" as="st" hint-placeholder-count="3">
+              <div style="display:flex;flex-direction:column;gap:12px;border-top:1px solid #C9BFAE;padding-top:24px">
+                <div style="font-family:'EB Garamond',serif;font-size:36px;color:#474E31;line-height:1">{{ st.n }}</div>
+                <div style="font-size:16px;font-weight:500">{{ st.title }}</div>
+                <div style="font-size:14px;font-weight:300;line-height:1.65;color:#3D3830">{{ st.body }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="padding:120px 64px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:64px">
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">Our promise, and yours</div>
+            <sc-for list="{{ policy }}" as="po" hint-placeholder-count="4">
+              <div style="display:flex;flex-direction:column;gap:4px;border-top:1px solid #DAD1C1;padding-top:14px"><div style="font-size:12px;color:#5E574C">{{ po.when }}</div><div style="font-size:15px;line-height:1.5">{{ po.what }}</div></div>
+            </sc-for>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">Hours</div>
+            <div style="display:flex;flex-direction:column">
+              <sc-for list="{{ hours }}" as="h" hint-placeholder-count="3">
+                <div style="display:flex;justify-content:space-between;padding:14px 0;border-top:1px solid #DAD1C1;font-size:15px;color:{{ h.color }}"><span>{{ h.d }}</span><span>{{ h.t }}</span></div>
+              </sc-for>
+            </div>
+            <div style="font-size:15px;line-height:1.6;margin-top:16px">Lekki Phase 1, Lagos<br><span style="color:#5E574C;font-size:14px">Parking on site. Directions sent with your booking.</span></div>
+          </div>
+          <div style="height:340px;background:repeating-linear-gradient(135deg,#E1D8C8 0 1px,#EBE4D8 1px 9px);display:flex;align-items:flex-end;padding:12px;font:11px/1.4 ui-monospace,monospace;color:#6E665A">map · Lekki Phase 1, muted monochrome style</div>
+        </div>
+        <div style="background:#1D1B17;color:#F4EFE6;padding:80px 64px 48px;display:flex;justify-content:space-between;align-items:flex-end">
+          <div style="display:flex;flex-direction:column;gap:24px"><div style="font-family:'EB Garamond',serif;font-size:96px;line-height:1.15">Ọdàrà</div><div style="font-size:12px;color:#A39B8C">© 2026 Ọdàrà, Lekki Phase 1, Lagos</div></div>
+          <div style="display:grid;grid-template-columns:repeat(3,auto);gap:16px 56px;font-size:14px;font-weight:300"><span>Services</span><span>Policy</span><span>Instagram</span><span>Stylists</span><span>Manage booking</span><span>WhatsApp</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- D2 SERVICES -->
+    <div style="display:flex;flex-direction:column;gap:12px" data-screen-label="D2 Services desktop">
+      <div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#5E574C">02 · Services · 1440</div>
+      <div style="width:1440px;background:#F4EFE6;display:flex;flex-direction:column;padding-bottom:120px">
+        <div style="height:88px;padding:0 64px;display:flex;align-items:center;justify-content:space-between">
+          <div style="font-family:'EB Garamond',serif;font-size:30px;line-height:1.2">Ọdàrà</div>
+          <div style="display:flex;gap:40px;font-size:14px;align-items:center"><span style="border-bottom:1px solid #1D1B17">Services</span><span>Stylists</span><span>Policy</span><span>Visit</span><span style="height:44px;padding:0 22px;background:#1D1B17;color:#F4EFE6;border-radius:2px;display:flex;align-items:center;font-weight:500">Book</span></div>
+        </div>
+        <div style="padding:80px 64px 64px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:64px;align-items:end">
+          <div style="font-family:'EB Garamond',serif;font-size:96px;line-height:1.05">Services</div>
+          <div style="font-size:17px;font-weight:300;line-height:1.7;color:#3D3830;max-width:520px">Prices include products. The deposit is 30% of the service and comes off your total. Pay the rest on the day.</div>
+        </div>
+        <sc-for list="{{ menu }}" as="cat" hint-placeholder-count="3">
+          <div style="padding:56px 64px 0;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:64px">
+            <div style="display:flex;gap:16px;align-items:baseline;padding-top:28px;border-top:1px solid #1D1B17">
+              <div style="font-family:'EB Garamond',serif;font-size:22px;font-style:italic;color:#474E31">{{ cat.num }}</div>
+              <div style="font-family:'EB Garamond',serif;font-size:40px">{{ cat.name }}</div>
+            </div>
+            <div style="display:flex;flex-direction:column;border-top:1px solid #1D1B17">
+              <sc-for list="{{ cat.items }}" as="s" hint-placeholder-count="3">
+                <div style="display:flex;align-items:baseline;gap:16px;padding:22px 0;border-bottom:1px solid #DAD1C1">
+                  <div style="font-family:'EB Garamond',serif;font-size:26px">{{ s.name }}</div>
+                  <div style="font-size:14px;color:#5E574C">{{ s.dur }}</div>
+                  <div style="flex:1;border-bottom:1px dotted #BFB5A3;transform:translateY(-6px)"></div>
+                  <div style="font-size:14px;color:#5E574C">{{ s.dep }} to hold</div>
+                  <div style="font-size:17px;width:100px;text-align:right">{{ s.price }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const n = v => '₦' + v.toLocaleString('en-US');
+    const s = (name, dur, price) => ({ name, dur, price: n(price), dep: n(Math.round(price * 0.3)) });
+    const menu = [
+      { num: 'i', name: 'Hair', items: [s('Knotless braids', '6h', 85000), s('Cornrows', '3h', 30000), s('Silk press', '2h', 35000), s('Loc retwist', '2h 30m', 28000), s('Colour', '3h', 55000)] },
+      { num: 'ii', name: 'Nails', items: [s('Gel manicure', '1h', 15000), s('Gel pedicure', '1h 15m', 18000), s('Acrylic full set', '2h', 28000)] },
+      { num: 'iii', name: 'Lashes & Brows', items: [s('Classic lash set', '1h 30m', 25000), s('Hybrid lash set', '2h', 32000), s('Brow shape & tint', '45m', 12000)] }
+    ];
+    return {
+      menu,
+      featured: [s('Knotless braids', '6h', 85000), s('Silk press', '2h', 35000), s('Gel manicure', '1h', 15000), s('Classic lash set', '1h 30m', 25000)],
+      stylists: [
+        { name: 'Adaeze', spec: 'Braids and protective styles', services: 'Knotless braids · Cornrows' },
+        { name: 'Tolu', spec: 'Silk press and colour', services: 'Silk press · Colour' },
+        { name: 'Bisi', spec: 'Locs and natural hair', services: 'Loc retwist · Knotless braids · Cornrows' },
+        { name: 'Kemi', spec: 'Nails', services: 'Gel manicure · Gel pedicure · Acrylic full set' },
+        { name: 'Ifeoma', spec: 'Lashes and brows', services: 'Classic lash set · Hybrid lash set · Brow shape & tint' }
+      ],
+      steps: [
+        { n: '1', title: 'Choose', body: 'Pick a service, a stylist and a time. Taken times stay visible so you can see how the week looks.' },
+        { n: '2', title: 'Hold your chair', body: 'Pay a deposit of 30%. Your slot is held from that moment, and your receipt arrives on WhatsApp.' },
+        { n: '3', title: 'Pay the rest on the day', body: 'The deposit comes off your total. We remind you 24 hours before.' }
+      ],
+      policy: [
+        { when: 'Up to 24h before', what: 'Reschedule for free.' },
+        { when: 'Cancel more than 24h before', what: 'Refund or salon credit, your choice.' },
+        { when: 'Within 24h, or no-show', what: 'The deposit is kept.' },
+        { when: 'If we cancel', what: 'You get a full refund.' }
+      ],
+      policyFull: [
+        { when: 'More than 24h before', tag: 'Free', tone: '#474E31', what: 'Move your booking to any open slot, as many times as you need. Or cancel and choose a full refund or salon credit.' },
+        { when: 'Within 24h', tag: 'Deposit kept', tone: '#8B3A26', what: 'Your stylist has kept the time for you and turned others away. The deposit covers that time.' },
+        { when: 'No-show', tag: 'Deposit kept', tone: '#8B3A26', what: 'If you don’t arrive and don’t message us, the deposit is kept and the booking closes.' },
+        { when: 'If we cancel', tag: 'Full refund', tone: '#474E31', what: 'If we ever need to cancel, you get your whole deposit back.' }
+      ],
+      hours: [
+        { d: 'Tuesday – Saturday', t: '9am – 7pm', color: '#1D1B17' },
+        { d: 'Sunday', t: '12 – 6pm', color: '#1D1B17' },
+        { d: 'Monday', t: 'Closed', color: '#8A8274' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

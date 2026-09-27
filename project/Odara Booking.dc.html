@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Be+Vietnam+Pro:wght@300;400;500&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#E7E1D6;color:#1D1B17;font-family:'Be Vietnam Pro',sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}a:hover{color:#474E31}*{box-sizing:border-box}button{font-family:inherit}@keyframes odRise{from{opacity:0;transform:translateY(8px) scale(.96)}to{opacity:1;transform:none}}@keyframes odFade{from{opacity:0}to{opacity:1}}</style>
+</helmet>
+<section style="padding:64px;display:flex;flex-direction:column;gap:32px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap">
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <div style="font-family:'EB Garamond',serif;font-size:40px">Booking flow · mobile</div>
+      <div style="font-size:14px;color:#5E574C">Slot picker (07) and hold (08) are live: pick a date and time, hold it, watch the countdown.</div>
+    </div>
+    <div style="display:flex;gap:16px;font-size:14px;color:#474E31"><a href="Odara Design System.dc.html">Design system</a><a href="Odara Public Site.dc.html">Public site</a><a href="Odara Studio.dc.html">Studio</a></div>
+  </div>
+  <div style="display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap">
+
+    <!-- 05 SERVICE -->
+    <div style="display:flex;flex-direction:column;gap:12px" data-screen-label="05 Choose service">
+      <div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#5E574C">05 · Choose service</div>
+      <div style="width:375px;height:812px;background:#F4EFE6;display:flex;flex-direction:column;overflow:hidden">
+        <div style="height:56px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;flex:none"><span style="font-size:14px">Close</span><span style="font-family:'EB Garamond',serif;font-size:21px;line-height:1.2">Ọdàrà</span><span style="font-size:13px;color:#5E574C">1 / 4</span></div>
+        <div style="display:flex;gap:4px;padding:0 20px;flex:none"><div style="flex:1;height:2px;background:#1D1B17"></div><div style="flex:1;height:2px;background:#DAD1C1"></div><div style="flex:1;height:2px;background:#DAD1C1"></div><div style="flex:1;height:2px;background:#DAD1C1"></div></div>
+        <div style="padding:32px 20px 8px;font-family:'EB Garamond',serif;font-size:34px;line-height:1.15;flex:none">What are we doing?</div>
+        <div style="padding:0 20px;flex:1;overflow:hidden">
+          <sc-for list="{{ svcCats }}" as="cat" hint-placeholder-count="3">
+            <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C;padding:24px 0 8px">{{ cat.name }}</div>
+            <sc-for list="{{ cat.items }}" as="s" hint-placeholder-count="3">
+              <div style="display:flex;align-items:center;gap:14px;padding:14px 12px;margin:0 -12px;border-top:1px solid #DAD1C1;background:{{ s.bg }};box-shadow:{{ s.bar }}">
+                <div style="flex:1;display:flex;flex-direction:column;gap:3px"><div style="font-family:'EB Garamond',serif;font-size:20px">{{ s.name }}</div><div style="font-size:12px;color:#5E574C">{{ s.dur }} · {{ s.price }} · {{ s.dep }} to hold</div></div>
+                <div style="width:18px;height:18px;border-radius:50%;border:{{ s.ring }};display:flex;align-items:center;justify-content:center"><div style="width:8px;height:8px;border-radius:50%;background:{{ s.dot }}"></div></div>
+              </div>
+            </sc-for>
+          </sc-for>
+        </div>
+        <div style="padding:16px 20px 28px;border-top:1px solid #DAD1C1;display:flex;align-items:center;gap:16px;flex:none;background:#F4EFE6">
+          <div style="flex:1;display:flex;flex-direction:column;gap:2px"><div style="font-size:14px">Knotless braids</div><div style="font-size:12px;color:#5E574C">6h · ₦85,000</div></div>
+          <div style="height:52px;padding:0 28px;background:#1D1B17;color:#F4EFE6;border-radius:2px;display:flex;align-items:center;font-size:15px;font-weight:500">Continue</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 STYLIST -->
+    <div style="display:flex;flex-direction:column;gap:12px" data-screen-label="06 Choose stylist">
+      <div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#5E574C">06 · Choose stylist</div>
+      <div style="width:375px;height:812px;background:#F4EFE6;display:flex;flex-direction:column;overflow:hidden">
+        <div style="height:56px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;flex:none"><span style="font-size:14px">Back</span><span style="font-family:'EB Garamond',serif;font-size:21px;line-height:1.2">Ọdàrà</span><span style="font-size:13px;color:#5E574C">2 / 4</span></div>
+        <div style="display:flex;gap:4px;padding:0 20px;flex:none"><div style="flex:1;height:2px;background:#1D1B17"></div><div style="flex:1;height:2px;background:#1D1B17"></div><div style="flex:1;height:2px;background:#DAD1C1"></div><div style="flex:1;height:2px;background:#DAD1C1"></div></div>
+        <div style="padding:32px 20px 8px;display:flex;flex-direction:column;gap:8px;flex:none"><div style="font-family:'EB Garamond',serif;font-size:34px;line-height:1.15">With whom?</div><div style="font-size:14px;color:#5E574C">For knotless braids</div></div>
+        <div style="padding:24px 20px 0;display:flex;flex-direction:column;gap:12px;flex:1">
+          <div style="display:flex;align-items:center;gap:16px;padding:20px;border:1px solid #474E31;background:#E3E2D0;border-radius:2px">
+            <div style="width:56px;height:56px;border-radius:50%;border:1px solid #474E31;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:22px;color:#474E31">∗</div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:3px"><div style="font-family:'EB Garamond',serif;font-size:22px">Any available</div><div style="font-size:13px;color:#474E31">Most open times. We match you with the first free stylist.</div></div>
+            <div style="width:18px;height:18px;border-radius:50%;border:1.5px solid #474E31;display:flex;align-items:center;justify-content:center"><div style="width:8px;height:8px;border-radius:50%;background:#474E31"></div></div>
+          </div>
+          <sc-for list="{{ stylistChoices }}" as="p" hint-placeholder-count="2">
+            <div style="display:flex;align-items:center;gap:16px;padding:20px;border:1px solid #DAD1C1;border-radius:2px">
+              <div style="width:56px;height:56px;border-radius:50%;background:repeating-linear-gradient(135deg,#E1D8C8 0 1px,#EBE4D8 1px 7px)"></div>
+              <div style="flex:1;display:flex;flex-direction:column;gap:3px"><div style="font-family:'EB Garamond',serif;font-size:22px">{{ p.name }}</div><div style="font-size:13px;color:#5E574C">{{ p.spec }}</div><div style="font-size:12px;color:#5E574C">Next open · {{ p.next }}</div></div>
+              <div style="width:18px;height:18px;border-radius:50%;border:1.5px solid #BFB5A3"></div>
+            </div>
+          </sc-for>
+          <div style="font-size:13px;color:#5E574C;line-height:1.6;padding-top:8px">Tolu, Kemi and Ifeoma don’t offer knotless braids.</div>
+        </div>
+        <div style="padding:16px 20px 28px;border-top:1px solid #DAD1C1;display:flex;align-items:center;gap:16px;flex:none">
+          <div style="flex:1;display:flex;flex-direction:column;gap:2px"><div style="font-size:14px">Any available</div><div style="font-size:12px;color:#5E574C">Knotless braids · 6h</div></div>
+          <div style="height:52px;padding:0 28px;background:#1D1B17;color:#F4EFE6;border-radius:2px;display:flex;align-items:center;font-size:15px;font-weight:500">Continue</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 07 SLOT (live) -->
+    <div style="display:flex;flex-direction:column;gap:12px" data-screen-label="07 Choose slot">
+      <div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#5E574C">07 · Choose slot · interactive</div>
+      <div style="width:375px;height:812px;background:#F4EFE6;display:flex;flex-direction:column;overflow:hidden">
+        <div style="height:56px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;flex:none"><span style="font-size:14px">Back</span><span style="font-family:'EB Garamond',serif;font-size:21px;line-height:1.2">Ọdàrà</span><span style="font-size:13px;color:#5E574C">3 / 4</span></div>
+        <div style="display:flex;gap:4px;padding:0 20px;flex:none"><div style="flex:1;height:2px;background:#1D1B17"></div><div style="flex:1;height:2px;background:#1D1B17"></div><div style="flex:1;height:2px;background:#1D1B17"></div><div style="flex:1;height:2px;background:#DAD1C1"></div></div>
+        <div style="padding:32px 20px 4px;display:flex;flex-direction:column;gap:8px;flex:none"><div style="font-family:'EB Garamond',serif;font-size:34px;line-height:1.15">When suits you?</div><div style="font-size:14px;color:#5E574C">October · times show your start, 6h each</div></div>
+        <div style="display:flex;padding:20px 12px 0;flex:none">
+          <sc-for list="{{ days }}" as="d" hint-placeholder-count="7">
+            <div onClick="{{ d.pick }}" style="flex:1;height:78px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border-bottom:{{ d.bd }};color:{{ d.fg }};cursor:pointer;transition:border-color .25s,color .25s">
+              <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase">{{ d.dow }}</div>
+              <div style="font-family:'EB Garamond',serif;font-size:24px;line-height:1.1">{{ d.d }}</div>
+              <div style="font-size:10px;height:12px">{{ d.note }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="padding:24px 20px 0;flex:1;display:flex;flex-direction:column;gap:20px">
+          <sc-if value="{{ dayOpen }}" hint-placeholder-val="{{ true }}">
+            <sc-for list="{{ slotGroups }}" as="g" hint-placeholder-count="2">
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">{{ g.label }}</div>
+                <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px">
+                  <sc-for list="{{ g.slots }}" as="s" hint-placeholder-count="6">
+                    <div onClick="{{ s.pick }}" style="height:48px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:15px;background:{{ s.bg }};border:{{ s.bd }};color:{{ s.fg }};text-decoration:{{ s.td }};font-weight:{{ s.fw }};cursor:{{ s.cur }};transition:background .25s,color .25s,border-color .25s">{{ s.t }}</div>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-for>
+            <div style="font-size:12px;color:#5E574C;display:flex;gap:16px"><span style="text-decoration:line-through">09:00</span><span>Taken times stay visible.</span></div>
+          </sc-if>
+          <sc-if value="{{ dayClosed }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:32px 0;display:flex;flex-direction:column;gap:8px;border-top:1px solid #DAD1C1"><div style="font-family:'EB Garamond',serif;font-size:24px">Closed on Mondays.</div><div style="font-size:14px;color:#5E574C">We rest, then open again Tuesday at 9am.</div></div>
+          </sc-if>
+        </div>
+        <div style="padding:16px 20px 28px;border-top:1px solid #DAD1C1;display:flex;align-items:center;gap:16px;flex:none">
+          <div style="flex:1;display:flex;flex-direction:column;gap:2px"><div style="font-size:14px">{{ pickLabel }}</div><div style="font-size:12px;color:#5E574C">{{ pickSub }}</div></div>
+          <button onClick="{{ hold }}" style="height:52px;padding:0 24px;border:0;border-radius:2px;font-size:15px;font-weight:500;background:{{ holdBg }};color:{{ holdFg }};cursor:pointer;transition:background .4s ease,color .4s ease">{{ holdText }}</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 08 HOLD -->
+    <div style="display:flex;flex-direction:column;gap:12px" data-screen-label="08 Hold with deposit">
+      <div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#5E574C">08 · Hold with deposit</div>
+      <div style="width:375px;height:880px;background:#F4EFE6;display:flex;flex-direction:column;overflow:hidden">
+        <div style="height:56px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;flex:none"><span style="font-size:14px">Back</span><span style="font-family:'EB Garamond',serif;font-size:21px;line-height:1.2">Ọdàrà</span><span style="font-size:13px;color:#5E574C">4 / 4</span></div>
+        <div style="display:flex;gap:4px;padding:0 20px;flex:none"><div style="flex:1;height:2px;background:#1D1B17"></div><div style="flex:1;height:2px;background:#1D1B17"></div><div style="flex:1;height:2px;background:#1D1B17"></div><div style="flex:1;height:2px;background:#1D1B17"></div></div>
+        <div style="margin:16px 20px 0;height:36px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border:1px dashed #474E31;border-radius:2px;color:#474E31;font-size:13px;flex:none"><span>Slot held for <span style="font-variant-numeric:tabular-nums;font-weight:500">{{ holdTime }}</span></span><span style="font-size:12px">Wed 7 Oct · 10:00</span></div>
+        <div style="padding:36px 20px 28px;display:flex;flex-direction:column;gap:16px;flex:none">
+          <div style="display:flex;align-items:flex-end;gap:18px">
+            <div style="display:flex;flex-direction:column;gap:2px"><div style="font-family:'EB Garamond',serif;font-size:50px;line-height:1;font-variant-numeric:lining-nums">₦25,500</div><div style="font-size:13px;letter-spacing:0.08em;text-transform:uppercase">now</div></div>
+            <div style="width:1px;height:56px;background:#C9BFAE"></div>
+            <div style="display:flex;flex-direction:column;gap:2px;color:#5E574C"><div style="font-family:'EB Garamond',serif;font-size:30px;line-height:1">₦59,500</div><div style="font-size:13px;letter-spacing:0.08em;text-transform:uppercase">on the day</div></div>
+          </div>
+          <div style="font-size:13px;color:#5E574C">Total ₦85,000 · deposit comes off your total</div>
+        </div>
+        <div style="margin:0 20px;border-top:1px solid #DAD1C1;border-bottom:1px solid #DAD1C1;padding:16px 0;display:grid;grid-template-columns:auto 1fr;gap:8px 20px;font-size:14px;flex:none">
+          <span style="color:#5E574C">Service</span><span>Knotless braids · 6h</span>
+          <span style="color:#5E574C">Stylist</span><span>Adaeze <span style="color:#5E574C">(first available)</span></span>
+          <span style="color:#5E574C">When</span><span>Wed 7 Oct · 10:00 – 16:00</span>
+        </div>
+        <div style="padding:20px 20px 0;display:flex;flex-direction:column;gap:6px;font-size:13px;line-height:1.5;flex:none">
+          <div style="display:flex;gap:10px"><span style="color:#474E31">—</span><span>Free to reschedule until Tue 6 Oct, 10:00.</span></div>
+          <div style="display:flex;gap:10px"><span style="color:#474E31">—</span><span>Cancel before then for a refund or credit.</span></div>
+          <div style="display:flex;gap:10px"><span style="color:#474E31">—</span><span>Within 24h or no-show, the deposit is kept.</span></div>
+        </div>
+        <div style="padding:24px 20px 0;display:flex;flex-direction:column;gap:18px;flex:none">
+          <div style="display:flex;flex-direction:column;gap:6px"><label style="font-size:13px;color:#5E574C">Your name</label><div style="height:46px;border-bottom:1px solid #BFB5A3;display:flex;align-items:center;font-size:16px">Amaka Obi</div></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><label style="font-size:13px;color:#1D1B17">WhatsApp number</label><div style="height:46px;border-bottom:2px solid #1D1B17;display:flex;align-items:center;gap:10px;font-size:16px"><span style="color:#5E574C">+234</span>803 555 01<span style="width:1px;height:20px;background:#1D1B17"></span></div><div style="font-size:12px;color:#5E574C">Your receipt and reminder go here.</div></div>
+        </div>
+        <div style="padding:20px 20px 28px;margin-top:auto;display:flex;flex-direction:column;gap:10px;flex:none">
+          <button onClick="{{ pay }}" style="height:56px;border:0;border-radius:2px;background:{{ payBg }};color:#F4EFE6;font-size:16px;font-weight:500;cursor:pointer;transition:background .3s">{{ payText }}</button>
+          <div style="font-size:12px;color:#5E574C;text-align:center">Card, bank transfer or USSD on the next step.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 09 CHECKOUT -->
+    <div style="display:flex;flex-direction:column;gap:12px" data-screen-label="09 Demo checkout">
+      <div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#5E574C">09 · Demo checkout</div>
+      <div style="width:375px;height:812px;background:#F2F1EE;display:flex;flex-direction:column;overflow:hidden">
+        <div style="height:32px;display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:0.06em;color:#6A6862;border-bottom:1px solid #E2E0DA;flex:none">Demo mode — no real charge</div>
+        <div style="padding:28px 24px 24px;display:flex;justify-content:space-between;align-items:flex-start;flex:none">
+          <div style="display:flex;flex-direction:column;gap:4px"><div style="font-size:13px;color:#6A6862">Paying Ọdàrà</div><div style="font-size:30px;font-weight:500;letter-spacing:-0.01em">₦25,500.00</div><div style="font-size:12px;color:#6A6862">amaka · +234 803 555 0192</div></div>
+          <div style="font-size:13px;color:#6A6862">Cancel</div>
+        </div>
+        <div style="margin:0 24px;display:grid;grid-template-columns:repeat(3,1fr);background:#E6E4DF;border-radius:6px;padding:3px;flex:none">
+          <div style="height:38px;background:#FFFFFF;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500">Card</div>
+          <div style="height:38px;display:flex;align-items:center;justify-content:center;font-size:13px;color:#55534E">Bank transfer</div>
+          <div style="height:38px;display:flex;align-items:center;justify-content:center;font-size:13px;color:#55534E">USSD</div>
+        </div>
+        <div style="margin:20px 24px 0;background:#FFFFFF;border:1px solid #E2E0DA;border-radius:6px;display:flex;flex-direction:column;flex:none">
+          <div style="padding:12px 14px;border-bottom:1px solid #E2E0DA;display:flex;flex-direction:column;gap:4px"><div style="font-size:11px;color:#6A6862">Card number</div><div style="font-size:16px;letter-spacing:0.06em">4084 0840 8408 4081</div></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr">
+            <div style="padding:12px 14px;border-right:1px solid #E2E0DA;display:flex;flex-direction:column;gap:4px"><div style="font-size:11px;color:#6A6862">Expiry</div><div style="font-size:16px">12 / 29</div></div>
+            <div style="padding:12px 14px;display:flex;flex-direction:column;gap:4px"><div style="font-size:11px;color:#6A6862">CVV</div><div style="font-size:16px;color:#A8A59E">•••</div></div>
+          </div>
+        </div>
+        <div style="margin:12px 24px 0;font-size:12px;color:#6A6862;line-height:1.5;flex:none">Use any test card. Ending in 0000 simulates a decline.</div>
+        <div style="margin:28px 24px 0;display:flex;flex-direction:column;gap:10px;flex:none;opacity:.55">
+          <div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#6A6862">Bank transfer preview</div>
+          <div style="background:#FFFFFF;border:1px solid #E2E0DA;border-radius:6px;padding:14px;display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:13px"><span style="color:#6A6862">Bank</span><span>Demo Bank</span><span style="color:#6A6862">Account</span><span>0123 456 789</span><span style="color:#6A6862">Expires</span><span>in 9:12</span></div>
+        </div>
+        <div style="margin-top:auto;padding:20px 24px 28px;display:flex;flex-direction:column;gap:12px;flex:none">
+          <div style="height:52px;background:#2B2A27;color:#FFFFFF;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:500">Pay ₦25,500.00</div>
+          <div style="font-size:11px;color:#8A877F;text-align:center">Demo checkout · not a real payment provider</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10 CONFIRMED -->
+    <div style="display:flex;flex-direction:column;gap:12px" data-screen-label="10 Confirmed">
+      <div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#5E574C">10 · Confirmed</div>
+      <div style="width:375px;height:920px;background:#F4EFE6;display:flex;flex-direction:column;overflow:hidden">
+        <div style="height:56px;padding:0 20px;display:flex;align-items:center;justify-content:center;flex:none"><span style="font-family:'EB Garamond',serif;font-size:21px;line-height:1.2">Ọdàrà</span></div>
+        <div style="padding:32px 20px 28px;display:flex;flex-direction:column;gap:14px;flex:none">
+          {{ confirmMark }}
+          <div style="font-family:'EB Garamond',serif;font-size:40px;line-height:1.1">Your chair is held.</div>
+          <div style="font-size:15px;font-weight:300;line-height:1.6;color:#3D3830">Wed 7 Oct at 10:00 with Adaeze. Knotless braids, about 6 hours.</div>
+        </div>
+        <div style="margin:0 20px;border-top:1px solid #DAD1C1;flex:none">
+          <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid #DAD1C1;font-size:14px"><span style="color:#5E574C">Reference</span><span style="font-family:ui-monospace,monospace;letter-spacing:0.08em">ODR-4K7Q</span></div>
+          <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid #DAD1C1;font-size:14px"><span style="color:#5E574C">Deposit paid</span><span style="color:#474E31">₦25,500</span></div>
+          <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid #DAD1C1;font-size:14px"><span style="color:#5E574C">Due on the day</span><span style="font-weight:500">₦59,500</span></div>
+        </div>
+        <div style="margin:24px 20px 0;background:#E6E0D3;padding:16px;display:flex;flex-direction:column;gap:8px;flex:none">
+          <div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#5E574C">Sent to your WhatsApp</div>
+          <div style="align-self:flex-start;max-width:290px;background:#FBF9F4;padding:12px 14px 8px;border-radius:2px 12px 12px 12px;display:flex;flex-direction:column;gap:6px">
+            <div style="font-size:12px;font-weight:500;color:#474E31">Ọdàrà</div>
+            <div style="font-size:14px;line-height:1.5">Hi Amaka, your chair is held. Knotless braids with Adaeze, Wed 7 Oct at 10:00. Deposit ₦25,500 received, ₦59,500 on the day. Ref ODR-4K7Q.</div>
+            <div style="align-self:flex-end;font-size:11px;color:#5E574C">09:42 ✓✓</div>
+          </div>
+        </div>
+        <div style="padding:24px 20px 0;display:flex;flex-direction:column;gap:10px;flex:none">
+          <div style="height:52px;background:#1D1B17;color:#F4EFE6;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:500">Open in WhatsApp</div>
+          <div style="height:52px;border:1px solid #1D1B17;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:500">Add to calendar</div>
+        </div>
+        <div style="padding:20px 20px 0;font-size:13px;line-height:1.6;color:#5E574C;flex:none">We’ll message you 24 hours before, on Tue 6 Oct at 10:00. Until then you can reschedule for free.</div>
+        <div style="margin-top:auto;padding:0 20px 28px;font-size:13px;flex:none"><span style="border-bottom:1px solid #1D1B17">Manage booking</span></div>
+      </div>
+    </div>
+
+    <!-- 11 RETURNING -->
+    <div style="display:flex;flex-direction:column;gap:12px" data-screen-label="11 Returning client">
+      <div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#5E574C">11 · Returning client · interactive</div>
+      <div style="width:375px;height:812px;background:#F4EFE6;display:flex;flex-direction:column;overflow:hidden">
+        <div style="height:56px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;flex:none"><span style="font-size:14px">Close</span><span style="font-family:'EB Garamond',serif;font-size:21px;line-height:1.2">Ọdàrà</span><span style="font-size:13px;color:#5E574C;width:36px"></span></div>
+        <div style="padding:36px 20px 24px;display:flex;flex-direction:column;gap:6px;flex:none"><div style="font-family:'EB Garamond',serif;font-size:36px;line-height:1.1">Welcome back, Amaka.</div><div style="font-size:14px;color:#5E574C">Same again?</div></div>
+        <div style="margin:0 20px;padding:18px 0;border-top:1px solid #DAD1C1;border-bottom:1px solid #DAD1C1;display:flex;justify-content:space-between;align-items:center;flex:none">
+          <div style="display:flex;flex-direction:column;gap:3px"><div style="font-family:'EB Garamond',serif;font-size:22px">Silk press with Tolu</div><div style="font-size:13px;color:#5E574C">2h · ₦35,000 · last visit 14 Aug</div></div>
+          <div style="font-size:13px;border-bottom:1px solid #1D1B17">Change</div>
+        </div>
+        <div style="padding:24px 20px 0;display:flex;flex-direction:column;gap:12px;flex:none">
+          <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">Tolu’s next open times</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <sc-for list="{{ quickSlots }}" as="q" hint-placeholder-count="3">
+              <div onClick="{{ q.pick }}" style="height:52px;padding:0 16px;border-radius:2px;display:flex;align-items:center;justify-content:space-between;font-size:15px;background:{{ q.bg }};color:{{ q.fg }};border:{{ q.bd }};cursor:pointer;transition:background .25s,color .25s"><span>{{ q.day }}</span><span style="font-weight:500">{{ q.t }}</span></div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="padding:28px 20px 0;display:flex;flex-direction:column;gap:10px;flex:none">
+          <div style="display:flex;align-items:flex-end;gap:16px">
+            <div style="display:flex;flex-direction:column;gap:2px"><div style="font-family:'EB Garamond',serif;font-size:42px;line-height:1">₦5,500</div><div style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase">now</div></div>
+            <div style="width:1px;height:46px;background:#C9BFAE"></div>
+            <div style="display:flex;flex-direction:column;gap:2px;color:#5E574C"><div style="font-family:'EB Garamond',serif;font-size:26px;line-height:1">₦24,500</div><div style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase">on the day</div></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;color:#5E574C"><span>Deposit ₦10,500</span><span style="color:#474E31">− ₦5,000 salon credit</span></div>
+          <div style="font-size:13px;color:#5E574C">Total ₦35,000</div>
+        </div>
+        <div style="margin-top:auto;padding:16px 20px 28px;display:flex;flex-direction:column;gap:10px;flex:none">
+          <div style="height:56px;background:#1D1B17;color:#F4EFE6;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:500">Pay ₦5,500 deposit</div>
+          <div style="font-size:12px;color:#5E574C;text-align:center">Receipt to +234 803 ··· 0192 · free to reschedule until 24h before</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12 MANAGE -->
+    <div style="display:flex;flex-direction:column;gap:12px" data-screen-label="12 Manage booking">
+      <div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#5E574C">12 · Manage booking</div>
+      <div style="width:375px;height:812px;background:#F4EFE6;display:flex;flex-direction:column;overflow:hidden">
+        <div style="height:56px;padding:0 20px;display:flex;align-items:center;justify-content:center;flex:none"><span style="font-family:'EB Garamond',serif;font-size:21px;line-height:1.2">Ọdàrà</span></div>
+        <div style="padding:36px 20px 24px;display:flex;flex-direction:column;gap:12px;flex:none">
+          <span style="align-self:flex-start;display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:13px;font-size:12px;font-weight:500;background:#E3E2D0;color:#474E31"><span style="width:6px;height:6px;border-radius:50%;background:#474E31"></span>Confirmed</span>
+          <div style="font-family:'EB Garamond',serif;font-size:36px;line-height:1.1">Wed 7 Oct, 10:00</div>
+          <div style="font-size:15px;color:#3D3830">Knotless braids with Adaeze · 6h</div>
+        </div>
+        <div style="margin:0 20px;border-top:1px solid #DAD1C1;flex:none">
+          <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid #DAD1C1;font-size:14px"><span style="color:#5E574C">Reference</span><span style="font-family:ui-monospace,monospace;letter-spacing:0.08em">ODR-4K7Q</span></div>
+          <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid #DAD1C1;font-size:14px"><span style="color:#5E574C">Deposit paid</span><span>₦25,500</span></div>
+          <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid #DAD1C1;font-size:14px"><span style="color:#5E574C">Due on the day</span><span>₦59,500</span></div>
+        </div>
+        <div style="margin:28px 20px 0;padding:20px;background:#E3E2D0;display:flex;flex-direction:column;gap:6px;flex:none">
+          <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#474E31">Right now</div>
+          <div style="font-family:'EB Garamond',serif;font-size:24px;line-height:1.2;color:#1D1B17">Free to reschedule until Tue 6 Oct, 10:00.</div>
+          <div style="font-size:13px;color:#474E31;line-height:1.5">Cancel before then and your deposit comes back as a refund or credit.</div>
+        </div>
+        <div style="margin-top:auto;padding:16px 20px 28px;display:flex;flex-direction:column;gap:10px;flex:none">
+          <div style="height:52px;background:#1D1B17;color:#F4EFE6;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:500">Reschedule</div>
+          <div style="height:52px;border:1px solid #8B3A26;color:#8B3A26;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:500">Cancel booking</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12b CANCEL CONFIRM -->
+    <div style="display:flex;flex-direction:column;gap:12px" data-screen-label="12b Cancel confirm">
+      <div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#5E574C">12b · Cancel confirmation</div>
+      <div style="width:375px;height:812px;background:#8A8479;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;position:relative">
+        <div style="background:#F4EFE6;padding:12px 20px 28px;display:flex;flex-direction:column;gap:16px;border-radius:12px 12px 0 0">
+          <div style="align-self:center;width:36px;height:4px;border-radius:2px;background:#DAD1C1"></div>
+          <div style="font-family:'EB Garamond',serif;font-size:30px;line-height:1.15;padding-top:8px">Cancel Wed 7 Oct?</div>
+          <div style="font-size:15px;line-height:1.6;color:#3D3830">You’re more than 24 hours out, so your <strong style="font-weight:500;color:#1D1B17">₦25,500 deposit comes back to you</strong>. Choose how.</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;align-items:center;gap:14px;padding:16px;border:1px solid #474E31;background:#E3E2D0;border-radius:2px"><div style="width:18px;height:18px;border-radius:50%;border:1.5px solid #474E31;display:flex;align-items:center;justify-content:center"><div style="width:8px;height:8px;border-radius:50%;background:#474E31"></div></div><div style="display:flex;flex-direction:column;gap:2px"><div style="font-size:15px">Refund ₦25,500</div><div style="font-size:12px;color:#474E31">Back to the card you paid with</div></div></div>
+            <div style="display:flex;align-items:center;gap:14px;padding:16px;border:1px solid #DAD1C1;border-radius:2px"><div style="width:18px;height:18px;border-radius:50%;border:1.5px solid #BFB5A3"></div><div style="display:flex;flex-direction:column;gap:2px"><div style="font-size:15px">Keep ₦25,500 as salon credit</div><div style="font-size:12px;color:#5E574C">Applied to your next booking</div></div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;padding-top:8px">
+            <div style="height:52px;background:#8B3A26;color:#F4EFE6;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:500">Cancel and refund ₦25,500</div>
+            <div style="height:52px;display:flex;align-items:center;justify-content:center;font-size:15px">Keep my booking</div>
+          </div>
+          <div style="font-size:12px;color:#5E574C;line-height:1.5;border-top:1px solid #DAD1C1;padding-top:12px">Within 24h the message changes: “Cancelling now means the ₦25,500 deposit is kept. You can still reschedule once, free, if Adaeze has room.”</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 13a EXPIRED -->
+    <div style="display:flex;flex-direction:column;gap:12px" data-screen-label="13a Hold expired">
+      <div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#5E574C">13a · Hold expired</div>
+      <div style="width:375px;height:812px;background:#F4EFE6;display:flex;flex-direction:column;overflow:hidden">
+        <div style="height:56px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;flex:none"><span style="font-size:14px">Back</span><span style="font-family:'EB Garamond',serif;font-size:21px;line-height:1.2">Ọdàrà</span><span style="font-size:13px;color:#5E574C">4 / 4</span></div>
+        <div style="margin:16px 20px 0;height:36px;display:flex;align-items:center;padding:0 14px;background:#EBE4D8;border-radius:2px;color:#5E574C;font-size:13px;flex:none;font-variant-numeric:tabular-nums">Slot held for 0:00</div>
+        <div style="padding:56px 20px 0;display:flex;flex-direction:column;gap:14px;flex:none">
+          <div style="font-family:'EB Garamond',serif;font-size:38px;line-height:1.1">Your hold has ended.</div>
+          <div style="font-size:15px;font-weight:300;line-height:1.65;color:#3D3830">We kept Wed 7 Oct at 10:00 for you for 10 minutes. Nothing was charged.</div>
+        </div>
+        <div style="margin:32px 20px 0;padding:18px 0;border-top:1px solid #DAD1C1;border-bottom:1px solid #DAD1C1;display:flex;justify-content:space-between;align-items:center;flex:none">
+          <div style="display:flex;flex-direction:column;gap:3px"><div style="font-size:15px">Wed 7 Oct · 10:00</div><div style="font-size:13px;color:#474E31">Still open</div></div>
+          <div style="font-size:13px;color:#5E574C">Knotless braids</div>
+        </div>
+        <div style="margin-top:auto;padding:16px 20px 28px;display:flex;flex-direction:column;gap:10px;flex:none">
+          <div style="height:52px;background:#1D1B17;color:#F4EFE6;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:500">Hold it again</div>
+          <div style="height:52px;border:1px solid #1D1B17;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:500">Choose another time</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 13b FAILED -->
+    <div style="display:flex;flex-direction:column;gap:12px" data-screen-label="13b Payment failed">
+      <div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#5E574C">13b · Payment failed</div>
+      <div style="width:375px;height:812px;background:#F4EFE6;display:flex;flex-direction:column;overflow:hidden">
+        <div style="height:56px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;flex:none"><span style="font-size:14px">Back</span><span style="font-family:'EB Garamond',serif;font-size:21px;line-height:1.2">Ọdàrà</span><span style="font-size:13px;color:#5E574C">4 / 4</span></div>
+        <div style="margin:16px 20px 0;height:36px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border:1px dashed #474E31;border-radius:2px;color:#474E31;font-size:13px;flex:none"><span>Slot held for <span style="font-variant-numeric:tabular-nums;font-weight:500">6:12</span></span><span style="font-size:12px">Wed 7 Oct · 10:00</span></div>
+        <div style="padding:56px 20px 0;display:flex;flex-direction:column;gap:14px;flex:none">
+          <div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#8B3A26">Payment didn’t go through</div>
+          <div style="font-family:'EB Garamond',serif;font-size:38px;line-height:1.1">Nothing was taken.</div>
+          <div style="font-size:15px;font-weight:300;line-height:1.65;color:#3D3830">Your bank declined the ₦25,500 charge. Your slot is still held, so there’s time to try again.</div>
+        </div>
+        <div style="margin:28px 20px 0;padding:14px 16px;background:#F0DDD3;color:#8B3A26;font-size:13px;line-height:1.5;border-radius:2px;flex:none">Card ending 0000 · declined by issuer</div>
+        <div style="margin-top:auto;padding:16px 20px 28px;display:flex;flex-direction:column;gap:10px;flex:none">
+          <div style="height:56px;background:#1D1B17;color:#F4EFE6;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:500">Try again · ₦25,500</div>
+          <div style="height:52px;border:1px solid #1D1B17;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:500">Pay by bank transfer or USSD</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:0 64px 96px;display:flex;flex-direction:column;gap:32px">
+  <div style="font-family:'EB Garamond',serif;font-size:40px">Booking flow · desktop</div>
+  <div style="display:flex;flex-direction:column;gap:64px">
+
+    <!-- D07 SLOT -->
+    <div style="display:flex;flex-direction:column;gap:12px" data-screen-label="D07 Slot desktop">
+      <div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#5E574C">07 · Choose slot · 1440 · interactive</div>
+      <div style="width:1440px;height:900px;background:#F4EFE6;display:flex;flex-direction:column">
+        <div style="height:88px;padding:0 64px;display:flex;align-items:center;justify-content:space-between;flex:none">
+          <div style="font-family:'EB Garamond',serif;font-size:30px;line-height:1.2">Ọdàrà</div>
+          <div style="display:flex;gap:32px;font-size:13px;color:#5E574C"><span style="color:#1D1B17">1 Service</span><span style="color:#1D1B17">2 Stylist</span><span style="color:#1D1B17;border-bottom:1px solid #1D1B17">3 Time</span><span>4 Hold</span></div>
+          <div style="font-size:14px">Close</div>
+        </div>
+        <div style="flex:1;display:grid;grid-template-columns:400px minmax(0,1fr);gap:96px;padding:48px 64px 0">
+          <div style="display:flex;flex-direction:column;gap:28px">
+            <div style="font-family:'EB Garamond',serif;font-size:56px;line-height:1.05">When suits you?</div>
+            <div style="border-top:1px solid #DAD1C1;display:flex;flex-direction:column">
+              <div style="display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid #DAD1C1;font-size:14px"><span style="color:#5E574C">Service</span><span>Knotless braids · 6h</span></div>
+              <div style="display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid #DAD1C1;font-size:14px"><span style="color:#5E574C">Stylist</span><span>Any available</span></div>
+              <div style="display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid #DAD1C1;font-size:14px"><span style="color:#5E574C">Price</span><span>₦85,000 · ₦25,500 to hold</span></div>
+            </div>
+            <div style="font-size:14px;line-height:1.7;color:#5E574C">Times show your start. Taken times stay visible so you can see how the week is filling. Once you hold a time, it’s yours for 10 minutes while you pay the deposit.</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:32px">
+            <div style="display:flex">
+              <sc-for list="{{ days }}" as="d" hint-placeholder-count="8">
+                <div onClick="{{ d.pick }}" style="flex:1;height:96px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border-bottom:{{ d.bd }};color:{{ d.fg }};cursor:pointer;transition:border-color .25s,color .25s">
+                  <div style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase">{{ d.dow }}</div>
+                  <div style="font-family:'EB Garamond',serif;font-size:34px;line-height:1.1">{{ d.d }}</div>
+                  <div style="font-size:11px;height:14px">{{ d.note }}</div>
+                </div>
+              </sc-for>
+            </div>
+            <sc-if value="{{ dayOpen }}" hint-placeholder-val="{{ true }}">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px">
+                <sc-for list="{{ slotGroups }}" as="g" hint-placeholder-count="2">
+                  <div style="display:flex;flex-direction:column;gap:14px">
+                    <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">{{ g.label }}</div>
+                    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px">
+                      <sc-for list="{{ g.slots }}" as="s" hint-placeholder-count="6">
+                        <div onClick="{{ s.pick }}" style="height:56px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:16px;background:{{ s.bg }};border:{{ s.bd }};color:{{ s.fg }};text-decoration:{{ s.td }};font-weight:{{ s.fw }};cursor:{{ s.cur }};transition:background .25s,color .25s,border-color .25s">{{ s.t }}</div>
+                      </sc-for>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+            <sc-if value="{{ dayClosed }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:40px 0;display:flex;flex-direction:column;gap:8px;border-top:1px solid #DAD1C1"><div style="font-family:'EB Garamond',serif;font-size:30px">Closed on Mondays.</div><div style="font-size:15px;color:#5E574C">We rest, then open again Tuesday at 9am.</div></div>
+            </sc-if>
+          </div>
+        </div>
+        <div style="height:104px;padding:0 64px;border-top:1px solid #DAD1C1;display:flex;align-items:center;justify-content:flex-end;gap:32px;flex:none">
+          <div style="display:flex;flex-direction:column;gap:2px;text-align:right"><div style="font-size:15px">{{ pickLabel }}</div><div style="font-size:13px;color:#5E574C">{{ pickSub }}</div></div>
+          <button onClick="{{ hold }}" style="height:56px;padding:0 36px;border:0;border-radius:2px;font-size:15px;font-weight:500;background:{{ holdBg }};color:{{ holdFg }};cursor:pointer;transition:background .4s ease,color .4s ease">{{ holdText }}</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- D08 HOLD -->
+    <div style="display:flex;flex-direction:column;gap:12px" data-screen-label="D08 Hold desktop">
+      <div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#5E574C">08 · Hold with deposit · 1440</div>
+      <div style="width:1440px;height:900px;background:#F4EFE6;display:flex;flex-direction:column">
+        <div style="height:88px;padding:0 64px;display:flex;align-items:center;justify-content:space-between;flex:none">
+          <div style="font-family:'EB Garamond',serif;font-size:30px;line-height:1.2">Ọdàrà</div>
+          <div style="display:flex;gap:32px;font-size:13px;color:#1D1B17"><span>1 Service</span><span>2 Stylist</span><span>3 Time</span><span style="border-bottom:1px solid #1D1B17">4 Hold</span></div>
+          <div style="font-size:14px">Back</div>
+        </div>
+        <div style="flex:1;display:grid;grid-template-columns:minmax(0,1fr) 520px;gap:0">
+          <div style="padding:64px 96px 64px 64px;display:flex;flex-direction:column;gap:36px">
+            <div style="display:flex;flex-direction:column;gap:12px"><div style="font-family:'EB Garamond',serif;font-size:52px;line-height:1.05">Hold your chair.</div><div style="font-size:16px;font-weight:300;color:#3D3830">Your deposit holds your chair. The rest is paid on the day.</div></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;max-width:640px">
+              <div style="display:flex;flex-direction:column;gap:6px"><label style="font-size:13px;color:#5E574C">Your name</label><div style="height:50px;border-bottom:1px solid #BFB5A3;display:flex;align-items:center;font-size:17px">Amaka Obi</div></div>
+              <div style="display:flex;flex-direction:column;gap:6px"><label style="font-size:13px;color:#5E574C">WhatsApp number</label><div style="height:50px;border-bottom:1px solid #BFB5A3;display:flex;align-items:center;gap:10px;font-size:17px"><span style="color:#5E574C">+234</span>803 555 0192</div><div style="font-size:12px;color:#5E574C">Your receipt and reminder go here.</div></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;max-width:640px;border-top:1px solid #DAD1C1;padding-top:24px">
+              <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">If plans change</div>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;font-size:14px;line-height:1.55">
+                <div>Free to reschedule until Tue 6 Oct, 10:00.</div>
+                <div>Cancel before then for a refund or credit.</div>
+                <div>Within 24h or no-show, the deposit is kept.</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:24px;margin-top:auto">
+              <button onClick="{{ pay }}" style="height:60px;padding:0 40px;border:0;border-radius:2px;background:{{ payBg }};color:#F4EFE6;font-size:16px;font-weight:500;cursor:pointer;transition:background .3s">{{ payText }}</button>
+              <div style="font-size:13px;color:#5E574C">Card, bank transfer or USSD on the next step.</div>
+            </div>
+          </div>
+          <div style="background:#EBE4D8;padding:64px 56px;display:flex;flex-direction:column;gap:32px">
+            <div style="height:40px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border:1px dashed #474E31;border-radius:2px;color:#474E31;font-size:14px"><span>Slot held for <span style="font-variant-numeric:tabular-nums;font-weight:500">{{ holdTime }}</span></span><span style="font-size:13px">Wed 7 Oct · 10:00</span></div>
+            <div style="display:flex;flex-direction:column;gap:18px;padding-top:16px">
+              <div style="display:flex;flex-direction:column;gap:4px"><div style="font-family:'EB Garamond',serif;font-size:80px;line-height:1">₦25,500</div><div style="font-size:14px;letter-spacing:0.1em;text-transform:uppercase">now</div></div>
+              <div style="display:flex;flex-direction:column;gap:4px;color:#5E574C"><div style="font-family:'EB Garamond',serif;font-size:40px;line-height:1">₦59,500</div><div style="font-size:14px;letter-spacing:0.1em;text-transform:uppercase">on the day</div></div>
+              <div style="font-size:14px;color:#5E574C;border-top:1px solid #C9BFAE;padding-top:14px">Total ₦85,000 · deposit comes off your total</div>
+            </div>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:12px 24px;font-size:15px;margin-top:auto">
+              <span style="color:#5E574C">Service</span><span>Knotless braids · 6h</span>
+              <span style="color:#5E574C">Stylist</span><span>Adaeze (first available)</span>
+              <span style="color:#5E574C">When</span><span>Wed 7 Oct · 10:00 – 16:00</span>
+              <span style="color:#5E574C">Where</span><span>Lekki Phase 1, Lagos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { day: 1, time: '10:00', held: false, secs: 581, paying: false, quick: 0 };
+  componentDidMount() {
+    this.t = setInterval(() => this.setState(s => ({ secs: s.secs > 0 ? s.secs - 1 : 581 })), 1000);
+  }
+  componentWillUnmount() { clearInterval(this.t); clearTimeout(this.p); }
+  renderVals() {
+    const st = this.state;
+    const n = v => '₦' + v.toLocaleString('en-US');
+    const days = [
+      { dow: 'Tue', d: 6 }, { dow: 'Wed', d: 7 }, { dow: 'Thu', d: 8 }, { dow: 'Fri', d: 9, full: true },
+      { dow: 'Sat', d: 10 }, { dow: 'Sun', d: 11, sun: true }, { dow: 'Mon', d: 12, closed: true }, { dow: 'Tue', d: 13 }
+    ];
+    const taken = { 0: ['09:00', '10:00', '10:30', '12:00'], 1: ['09:00', '09:30', '11:00', '12:30'], 2: ['09:30', '13:00'], 4: ['09:00', '09:30', '10:00', '11:30', '12:00'], 5: ['12:00'], 7: ['11:00'] };
+    const cur = days[st.day];
+    const all = cur.sun ? ['12:00', '12:30', '13:00'] : ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00'];
+    const tk = cur.full ? all : (taken[st.day] || []);
+    const slot = t => {
+      const isT = tk.includes(t), sel = st.time === t && !isT;
+      const heldSel = sel && st.held;
+      return {
+        t, pick: isT ? undefined : () => this.setState({ time: t, held: false }),
+        bg: heldSel ? '#E3E2D0' : sel ? '#474E31' : 'transparent',
+        bd: heldSel ? '1px dashed #474E31' : sel ? '1px solid #474E31' : isT ? '1px solid #E3DBCD' : '1px solid #BFB5A3',
+        fg: heldSel ? '#474E31' : sel ? '#F4EFE6' : isT ? '#9C9486' : '#1D1B17',
+        td: isT ? 'line-through' : 'none', fw: sel ? 500 : 400, cur: isT ? 'not-allowed' : 'pointer'
+      };
+    };
+    const morning = all.filter(t => t < '12:00').map(slot), afternoon = all.filter(t => t >= '12:00').map(slot);
+    const slotGroups = [morning.length && { label: 'Morning', slots: morning }, { label: 'Afternoon', slots: afternoon }].filter(Boolean);
+    const valid = st.time && all.includes(st.time) && !tk.includes(st.time) && !cur.closed;
+    const when = `${cur.dow} ${cur.d} Oct`;
+    const mins = Math.floor(st.secs / 60), secs = String(st.secs % 60).padStart(2, '0');
+    const qs = [{ day: 'Thu 8 Oct', t: '11:00' }, { day: 'Sat 10 Oct', t: '09:30' }, { day: 'Sun 11 Oct', t: '14:00' }];
+    const cat = (name, items) => ({ name, items: items.map(([nm, dur, p], i) => { const on = nm === 'Knotless braids'; return { name: nm, dur, price: n(p), dep: n(Math.round(p * 0.3)), bg: on ? '#E3E2D0' : 'transparent', bar: on ? 'inset 3px 0 0 #474E31' : 'none', ring: on ? '1.5px solid #474E31' : '1.5px solid #BFB5A3', dot: on ? '#474E31' : 'transparent' }; }) });
+    return {
+      svcCats: [
+        cat('Hair', [['Knotless braids', '6h', 85000], ['Silk press', '2h', 35000], ['Loc retwist', '2h 30m', 28000]]),
+        cat('Nails', [['Gel manicure', '1h', 15000]]),
+        cat('Lashes & Brows', [['Classic lash set', '1h 30m', 25000]])
+      ],
+      stylistChoices: [
+        { name: 'Adaeze', spec: 'Braids and protective styles', next: 'Wed 7 Oct, 10:00' },
+        { name: 'Bisi', spec: 'Locs and natural hair', next: 'Thu 8 Oct, 09:00' }
+      ],
+      days: days.map((d, i) => ({
+        ...d, note: d.closed ? 'Closed' : d.full ? 'Full' : '',
+        bd: i === st.day ? '2px solid #1D1B17' : '1px solid #DAD1C1',
+        fg: d.closed ? '#B0A898' : i === st.day ? '#1D1B17' : '#5E574C',
+        pick: () => this.setState({ day: i, held: false, time: i === st.day ? st.time : null })
+      })),
+      dayOpen: !cur.closed, dayClosed: !!cur.closed, slotGroups,
+      pickLabel: cur.closed ? 'Pick another day' : cur.full ? 'Fully booked' : valid ? `${when} · ${st.time}` : 'Pick a time',
+      pickSub: cur.full ? 'Try Thu 8 or Sat 10' : valid ? (st.held ? 'Held for you · 10:00 to pay' : 'Knotless braids · 6h') : 'Knotless braids · 6h',
+      hold: valid ? () => this.setState({ held: true, secs: 600 }) : undefined,
+      holdText: st.held && valid ? 'Held · Continue' : 'Hold this time',
+      holdBg: !valid ? '#DAD1C1' : st.held ? '#474E31' : '#1D1B17',
+      holdFg: !valid ? '#8A8274' : '#F4EFE6',
+      holdTime: `${mins}:${secs}`,
+      pay: () => { this.setState({ paying: true }); clearTimeout(this.p); this.p = setTimeout(() => this.setState({ paying: false }), 1600); },
+      payText: st.paying ? 'Opening checkout…' : 'Pay ₦25,500 deposit',
+      payBg: st.paying ? '#474E31' : '#1D1B17',
+      quickSlots: qs.map((q, i) => ({ ...q, pick: () => this.setState({ quick: i }), bg: st.quick === i ? '#474E31' : 'transparent', fg: st.quick === i ? '#F4EFE6' : '#1D1B17', bd: st.quick === i ? '1px solid #474E31' : '1px solid #BFB5A3' })),
+      confirmMark: React.createElement('div', { style: { width: 44, height: 44, borderRadius: '50%', background: '#474E31', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'odRise 900ms cubic-bezier(.2,.7,.2,1) both' } },
+        React.createElement('div', { style: { width: 14, height: 8, borderLeft: '1.5px solid #F4EFE6', borderBottom: '1.5px solid #F4EFE6', transform: 'translateY(-2px) rotate(-45deg)' } }))
+    };
+  }
+}
+</script>
+</body>
+</html>

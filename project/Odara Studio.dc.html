@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Be+Vietnam+Pro:wght@300;400;500&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#E7E1D6;color:#1D1B17;font-family:'Be Vietnam Pro',sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}a:hover{color:#474E31}*{box-sizing:border-box}button{font-family:inherit}</style>
+</helmet>
+<section style="padding:64px;display:flex;flex-direction:column;gap:32px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap">
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <div style="font-family:'EB Garamond',serif;font-size:40px">Studio · mobile</div>
+      <div style="font-size:14px;color:#5E574C">Actions in Bookings (15) are live and update the timeline and totals.</div>
+    </div>
+    <div style="display:flex;gap:16px;font-size:14px;color:#474E31"><a href="Odara Design System.dc.html">Design system</a><a href="Odara Public Site.dc.html">Public site</a><a href="Odara Booking.dc.html">Booking flow</a></div>
+  </div>
+  <div style="display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap">
+
+    <!-- 14 TODAY -->
+    <div style="display:flex;flex-direction:column;gap:12px" data-screen-label="14 Today">
+      <div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#5E574C">14 · Today</div>
+      <div style="width:375px;height:880px;background:#F4EFE6;display:flex;flex-direction:column;overflow:hidden">
+        <div style="height:56px;padding:0 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #DAD1C1;flex:none"><div style="display:flex;align-items:baseline;gap:8px"><span style="font-family:'EB Garamond',serif;font-size:21px;line-height:1.2">Ọdàrà</span><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">Studio</span></div><span style="width:30px;height:30px;border-radius:50%;background:#EBE4D8;display:flex;align-items:center;justify-content:center;font-size:12px">O</span></div>
+        <div style="padding:20px 16px 14px;display:flex;justify-content:space-between;align-items:baseline;flex:none"><div style="font-family:'EB Garamond',serif;font-size:30px;line-height:1.1">Wed 7 Oct</div><div style="font-size:13px;color:#5E574C">Now 12:10</div></div>
+        <div style="padding:0 16px;display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:none">
+          <sc-for list="{{ stats }}" as="k" hint-placeholder-count="4">
+            <div style="background:#EBE4D8;padding:12px;display:flex;flex-direction:column;gap:4px;border-radius:2px"><div style="font-size:11px;color:#5E574C;line-height:1.3">{{ k.label }}</div><div style="font-family:'EB Garamond',serif;font-size:26px;line-height:1.1">{{ k.value }}</div><div style="font-size:11px;color:#5E574C">{{ k.sub }}</div></div>
+          </sc-for>
+        </div>
+        <div style="padding:16px 8px 0 0;flex:1;display:flex;flex-direction:column;min-height:0">
+          <div style="display:grid;grid-template-columns:32px repeat(5,minmax(0,1fr));gap:3px;padding-bottom:6px;flex:none">
+            <div></div>
+            <sc-for list="{{ staff }}" as="p" hint-placeholder-count="5"><div style="font-size:11px;font-weight:500;text-align:center">{{ p }}</div></sc-for>
+          </div>
+          <div style="position:relative;height:440px;display:grid;grid-template-columns:32px repeat(5,minmax(0,1fr));gap:3px;flex:none">
+            <div style="position:relative">
+              <sc-for list="{{ hoursM }}" as="h" hint-placeholder-count="10"><div style="position:absolute;top:{{ h.top }};right:4px;font-size:9px;color:#8A8274;transform:translateY(-5px)">{{ h.l }}</div></sc-for>
+            </div>
+            <sc-for list="{{ columnsM }}" as="col" hint-placeholder-count="5">
+              <div style="position:relative;background:repeating-linear-gradient(180deg,#DAD1C1 0 1px,transparent 1px 44px)">
+                <sc-for list="{{ col.items }}" as="b" hint-placeholder-count="2">
+                  <div style="position:absolute;left:0;right:0;top:{{ b.top }};height:{{ b.h }};background:{{ b.bg }};color:{{ b.fg }};border:{{ b.bd }};border-radius:2px;padding:3px 4px;overflow:hidden;display:flex;flex-direction:column;gap:1px;text-decoration:{{ b.td }};transition:background .3s,color .3s"><div style="font-size:10px;font-weight:500;line-height:1.2">{{ b.client }}</div><div style="font-size:9px;line-height:1.2;opacity:.8">{{ b.short }}</div></div>
+                </sc-for>
+              </div>
+            </sc-for>
+            <div style="position:absolute;left:28px;right:0;top:{{ nowTopM }};height:1px;background:#8B3A26"></div>
+            <div style="position:absolute;left:24px;top:{{ nowTopM }};width:7px;height:7px;border-radius:50%;background:#8B3A26;transform:translateY(-3px)"></div>
+          </div>
+        </div>
+        <div style="height:60px;border-top:1px solid #DAD1C1;display:grid;grid-template-columns:repeat(4,1fr);font-size:12px;flex:none">
+          <div style="display:flex;align-items:center;justify-content:center;font-weight:500;box-shadow:inset 0 2px 0 #1D1B17">Today</div><div style="display:flex;align-items:center;justify-content:center;color:#5E574C">Bookings</div><div style="display:flex;align-items:center;justify-content:center;color:#5E574C">Staff</div><div style="display:flex;align-items:center;justify-content:center;color:#5E574C">Messages</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 15 BOOKINGS -->
+    <div style="display:flex;flex-direction:column;gap:12px" data-screen-label="15 Bookings list">
+      <div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#5E574C">15 · Bookings · interactive</div>
+      <div style="width:375px;height:880px;background:#F4EFE6;display:flex;flex-direction:column;overflow:hidden">
+        <div style="height:56px;padding:0 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #DAD1C1;flex:none"><div style="display:flex;align-items:baseline;gap:8px"><span style="font-family:'EB Garamond',serif;font-size:21px;line-height:1.2">Ọdàrà</span><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">Studio</span></div><span style="font-size:13px">Search</span></div>
+        <div style="padding:20px 16px 12px;display:flex;flex-direction:column;gap:12px;flex:none">
+          <div style="font-family:'EB Garamond',serif;font-size:30px;line-height:1.1">Bookings</div>
+          <div style="display:flex;gap:6px;font-size:12px"><span style="height:30px;padding:0 12px;border-radius:15px;background:#1D1B17;color:#F4EFE6;display:flex;align-items:center">Today · {{ countAll }}</span><span style="height:30px;padding:0 12px;border-radius:15px;border:1px solid #DAD1C1;display:flex;align-items:center">Tomorrow</span><span style="height:30px;padding:0 12px;border-radius:15px;border:1px solid #DAD1C1;display:flex;align-items:center">This week</span></div>
+        </div>
+        <div style="flex:1;overflow:auto;padding:0 16px">
+          <sc-for list="{{ list }}" as="b" hint-placeholder-count="6">
+            <div style="border-top:1px solid #DAD1C1;padding:12px 0;display:flex;flex-direction:column;gap:10px">
+              <div onClick="{{ b.toggle }}" style="display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:start;cursor:pointer">
+                <div style="font-size:13px;font-variant-numeric:tabular-nums;padding-top:1px">{{ b.start }}</div>
+                <div style="display:flex;flex-direction:column;gap:2px;min-width:0"><div style="font-size:14px;font-weight:500">{{ b.client }}</div><div style="font-size:12px;color:#5E574C">{{ b.service }} · {{ b.stylist }}</div><div style="font-size:12px;color:#5E574C">{{ b.money }}</div></div>
+                <span style="display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 9px;border-radius:12px;font-size:11px;font-weight:500;white-space:nowrap;background:{{ b.chip.bg }};color:{{ b.chip.fg }};border:{{ b.chip.bd }};transition:background .3s,color .3s"><span style="width:5px;height:5px;border-radius:50%;background:{{ b.chip.dot }}"></span>{{ b.status }}</span>
+              </div>
+              <sc-if value="{{ b.open }}" hint-placeholder-val="{{ false }}">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;padding-left:54px">
+                  <sc-for list="{{ b.actions }}" as="a" hint-placeholder-count="4">
+                    <button onClick="{{ a.run }}" style="height:38px;border-radius:2px;font-size:12px;font-weight:500;background:{{ a.bg }};color:{{ a.fg }};border:{{ a.bd }};cursor:pointer">{{ a.label }}</button>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+        <div style="height:60px;border-top:1px solid #DAD1C1;display:grid;grid-template-columns:repeat(4,1fr);font-size:12px;flex:none">
+          <div style="display:flex;align-items:center;justify-content:center;color:#5E574C">Today</div><div style="display:flex;align-items:center;justify-content:center;font-weight:500;box-shadow:inset 0 2px 0 #1D1B17">Bookings</div><div style="display:flex;align-items:center;justify-content:center;color:#5E574C">Staff</div><div style="display:flex;align-items:center;justify-content:center;color:#5E574C">Messages</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 16 STAFF -->
+    <div style="display:flex;flex-direction:column;gap:12px" data-screen-label="16 Staff availability">
+      <div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#5E574C">16 · Staff availability</div>
+      <div style="width:375px;height:880px;background:#F4EFE6;display:flex;flex-direction:column;overflow:hidden">
+        <div style="height:56px;padding:0 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #DAD1C1;flex:none"><div style="display:flex;align-items:baseline;gap:8px"><span style="font-family:'EB Garamond',serif;font-size:21px;line-height:1.2">Ọdàrà</span><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">Studio</span></div><span style="font-size:13px">Save</span></div>
+        <div style="padding:20px 16px 12px;display:flex;flex-direction:column;gap:14px;flex:none">
+          <div style="font-family:'EB Garamond',serif;font-size:30px;line-height:1.1">Staff</div>
+          <div style="display:flex;gap:0;border-bottom:1px solid #DAD1C1">
+            <sc-for list="{{ staffTabs }}" as="t" hint-placeholder-count="5"><div style="flex:1;height:38px;display:flex;align-items:center;justify-content:center;font-size:13px;color:{{ t.fg }};border-bottom:{{ t.bd }};margin-bottom:-1px">{{ t.name }}</div></sc-for>
+          </div>
+        </div>
+        <div style="padding:8px 16px 0;display:flex;flex-direction:column;flex:none">
+          <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C;padding-bottom:8px">Weekly hours · Adaeze</div>
+          <sc-for list="{{ week }}" as="w" hint-placeholder-count="7">
+            <div style="display:grid;grid-template-columns:44px 40px 1fr;align-items:center;gap:10px;height:48px;border-top:1px solid #DAD1C1">
+              <div style="font-size:14px;color:{{ w.dayFg }}">{{ w.d }}</div>
+              <div style="width:34px;height:20px;border-radius:10px;background:{{ w.trk }};position:relative"><div style="position:absolute;top:2px;left:{{ w.knob }};width:16px;height:16px;border-radius:50%;background:#F4EFE6"></div></div>
+              <div style="display:flex;gap:6px;align-items:center;font-size:13px;color:{{ w.fg }}">{{ w.hours }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="padding:28px 16px 0;display:flex;flex-direction:column;gap:10px;flex:none">
+          <div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">Time off</div><div style="font-size:13px;border-bottom:1px solid #1D1B17">Add time off</div></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:#EBE4D8;border-radius:2px"><div style="display:flex;flex-direction:column;gap:2px"><div style="font-size:14px">Fri 16 Oct</div><div style="font-size:12px;color:#5E574C">Full day · Family event</div></div><div style="font-size:12px;color:#5E574C">0 clashes</div></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:#EBE4D8;border-radius:2px"><div style="display:flex;flex-direction:column;gap:2px"><div style="font-size:14px">Tue 27 – Thu 29 Oct</div><div style="font-size:12px;color:#5E574C">Leave</div></div><div style="font-size:12px;color:#8B3A26">2 bookings to move</div></div>
+        </div>
+        <div style="margin-top:auto;height:60px;border-top:1px solid #DAD1C1;display:grid;grid-template-columns:repeat(4,1fr);font-size:12px;flex:none">
+          <div style="display:flex;align-items:center;justify-content:center;color:#5E574C">Today</div><div style="display:flex;align-items:center;justify-content:center;color:#5E574C">Bookings</div><div style="display:flex;align-items:center;justify-content:center;font-weight:500;box-shadow:inset 0 2px 0 #1D1B17">Staff</div><div style="display:flex;align-items:center;justify-content:center;color:#5E574C">Messages</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 17 MESSAGES -->
+    <div style="display:flex;flex-direction:column;gap:12px" data-screen-label="17 Messages">
+      <div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#5E574C">17 · Messages</div>
+      <div style="width:375px;height:880px;background:#F4EFE6;display:flex;flex-direction:column;overflow:hidden">
+        <div style="height:56px;padding:0 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #DAD1C1;flex:none"><div style="display:flex;align-items:baseline;gap:8px"><span style="font-family:'EB Garamond',serif;font-size:21px;line-height:1.2">Ọdàrà</span><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">Studio</span></div><span style="font-size:13px;color:#5E574C">WhatsApp</span></div>
+        <div style="padding:20px 16px 12px;display:flex;flex-direction:column;gap:12px;flex:none">
+          <div style="font-family:'EB Garamond',serif;font-size:30px;line-height:1.1">Outbox</div>
+          <div style="display:flex;gap:6px;font-size:12px"><span style="height:30px;padding:0 12px;border-radius:15px;background:#1D1B17;color:#F4EFE6;display:flex;align-items:center">All</span><span style="height:30px;padding:0 12px;border-radius:15px;border:1px solid #DAD1C1;display:flex;align-items:center">Sent · 4</span><span style="height:30px;padding:0 12px;border-radius:15px;border:1px solid #DAD1C1;display:flex;align-items:center">Queued · 3</span><span style="height:30px;padding:0 12px;border-radius:15px;border:1px solid #DAD1C1;display:flex;align-items:center;color:#8B3A26">Failed · 1</span></div>
+        </div>
+        <div style="flex:1;overflow:hidden;background:#E6E0D3;padding:16px;display:flex;flex-direction:column;gap:14px">
+          <sc-for list="{{ outbox }}" as="m" hint-placeholder-count="5">
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <div style="display:flex;justify-content:space-between;font-size:11px;color:#5E574C"><span><span style="color:#1D1B17;font-weight:500">{{ m.to }}</span> · {{ m.kind }}</span><span style="color:{{ m.stFg }}">{{ m.status }}</span></div>
+              <div style="background:{{ m.bg }};border:{{ m.bd }};padding:10px 12px;border-radius:2px 12px 12px 12px;font-size:13px;line-height:1.5;color:{{ m.fg }}">{{ m.body }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="height:60px;border-top:1px solid #DAD1C1;display:grid;grid-template-columns:repeat(4,1fr);font-size:12px;flex:none">
+          <div style="display:flex;align-items:center;justify-content:center;color:#5E574C">Today</div><div style="display:flex;align-items:center;justify-content:center;color:#5E574C">Bookings</div><div style="display:flex;align-items:center;justify-content:center;color:#5E574C">Staff</div><div style="display:flex;align-items:center;justify-content:center;font-weight:500;box-shadow:inset 0 2px 0 #1D1B17">Messages</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:0 64px 96px;display:flex;flex-direction:column;gap:32px">
+  <div style="font-family:'EB Garamond',serif;font-size:40px">Studio · desktop</div>
+  <div style="display:flex;flex-direction:column;gap:12px" data-screen-label="D14 Today desktop">
+    <div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#5E574C">14 · Today · 1440</div>
+    <div style="width:1440px;height:960px;background:#F4EFE6;display:grid;grid-template-columns:220px minmax(0,1fr)">
+      <div style="border-right:1px solid #DAD1C1;padding:28px 24px;display:flex;flex-direction:column;gap:40px">
+        <div style="display:flex;flex-direction:column;gap:2px"><span style="font-family:'EB Garamond',serif;font-size:30px;line-height:1.2">Ọdàrà</span><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">Studio</span></div>
+        <div style="display:flex;flex-direction:column;gap:2px;font-size:14px">
+          <div style="height:38px;padding:0 12px;display:flex;align-items:center;background:#EBE4D8;border-radius:2px;font-weight:500">Today</div>
+          <div style="height:38px;padding:0 12px;display:flex;align-items:center;color:#5E574C">Bookings</div>
+          <div style="height:38px;padding:0 12px;display:flex;align-items:center;color:#5E574C">Staff</div>
+          <div style="height:38px;padding:0 12px;display:flex;align-items:center;justify-content:space-between;color:#5E574C">Messages<span style="font-size:11px;color:#8B3A26">1</span></div>
+        </div>
+        <div style="margin-top:auto;font-size:12px;color:#5E574C;line-height:1.6">Lekki Phase 1<br>Open today 9am – 7pm</div>
+      </div>
+      <div style="display:flex;flex-direction:column;padding:28px 40px 32px;gap:24px;min-width:0">
+        <div style="display:flex;justify-content:space-between;align-items:baseline">
+          <div style="display:flex;align-items:baseline;gap:16px"><div style="font-family:'EB Garamond',serif;font-size:44px;line-height:1.1">Wednesday 7 October</div><div style="font-size:14px;color:#5E574C">Now 12:10</div></div>
+          <div style="display:flex;gap:8px;font-size:13px"><span style="height:38px;padding:0 16px;border:1px solid #BFB5A3;border-radius:2px;display:flex;align-items:center">Previous</span><span style="height:38px;padding:0 16px;border:1px solid #BFB5A3;border-radius:2px;display:flex;align-items:center">Next</span><span style="height:38px;padding:0 16px;background:#1D1B17;color:#F4EFE6;border-radius:2px;display:flex;align-items:center;font-weight:500">New booking</span></div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+          <sc-for list="{{ stats }}" as="k" hint-placeholder-count="4">
+            <div style="background:#EBE4D8;padding:18px 20px;display:flex;flex-direction:column;gap:6px;border-radius:2px"><div style="font-size:12px;color:#5E574C">{{ k.label }}</div><div style="font-family:'EB Garamond',serif;font-size:38px;line-height:1.05">{{ k.value }}</div><div style="font-size:12px;color:#5E574C">{{ k.sub }}</div></div>
+          </sc-for>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;min-height:0">
+          <div style="display:grid;grid-template-columns:52px repeat(5,minmax(0,1fr));gap:8px;padding-bottom:10px;border-bottom:1px solid #DAD1C1">
+            <div></div>
+            <sc-for list="{{ staffD }}" as="p" hint-placeholder-count="5"><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:14px;font-weight:500">{{ p.name }}</span><span style="font-size:12px;color:#5E574C">{{ p.count }}</span></div></sc-for>
+          </div>
+          <div style="position:relative;height:560px;display:grid;grid-template-columns:52px repeat(5,minmax(0,1fr));gap:8px">
+            <div style="position:relative">
+              <sc-for list="{{ hoursD }}" as="h" hint-placeholder-count="10"><div style="position:absolute;top:{{ h.top }};left:0;font-size:11px;color:#8A8274;transform:translateY(-6px)">{{ h.l }}</div></sc-for>
+            </div>
+            <sc-for list="{{ columnsD }}" as="col" hint-placeholder-count="5">
+              <div style="position:relative;background:repeating-linear-gradient(180deg,#E3DBCD 0 1px,transparent 1px 56px)">
+                <sc-for list="{{ col.items }}" as="b" hint-placeholder-count="2">
+                  <div style="position:absolute;left:0;right:0;top:{{ b.top }};height:{{ b.h }};background:{{ b.bg }};color:{{ b.fg }};border:{{ b.bd }};border-radius:2px;padding:8px 10px;overflow:hidden;display:flex;flex-direction:column;gap:3px;transition:background .3s,color .3s">
+                    <div style="display:flex;justify-content:space-between;gap:6px;font-size:13px;font-weight:500"><span style="text-decoration:{{ b.td }}">{{ b.client }}</span><span style="font-size:11px;font-weight:400;opacity:.85;white-space:nowrap">{{ b.status }}</span></div>
+                    <div style="font-size:12px;opacity:.85">{{ b.service }}</div>
+                    <div style="font-size:11px;opacity:.75">{{ b.range }}</div>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-for>
+            <div style="position:absolute;left:48px;right:0;top:{{ nowTopD }};height:1px;background:#8B3A26"></div>
+            <div style="position:absolute;left:44px;top:{{ nowTopD }};width:9px;height:9px;border-radius:50%;background:#8B3A26;transform:translateY(-4px)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    open: 'b2',
+    st: { b1: 'Arrived', b2: 'Completed', b3: 'Arrived', b4: 'Confirmed', b5: 'Completed', b6: 'Confirmed', b7: 'Held', b8: 'No-show', b9: 'Completed', b10: 'Confirmed', b11: 'Confirmed', b12: 'Completed', b13: 'Confirmed' }
+  };
+  renderVals() {
+    const S = this.state;
+    const n = v => '₦' + v.toLocaleString('en-US');
+    const B = [
+      ['b2', 'Tolu', 'Funke', 'Silk press', 9, 2, 35000],
+      ['b8', 'Kemi', 'Yewande', 'Gel manicure', 9, 1, 15000],
+      ['b5', 'Bisi', 'Ngozi', 'Loc retwist', 9.5, 2.5, 28000],
+      ['b1', 'Adaeze', 'Amaka', 'Knotless braids', 10, 6, 85000],
+      ['b9', 'Kemi', 'Ronke', 'Gel pedicure', 10.5, 1.25, 18000],
+      ['b12', 'Ifeoma', 'Dami', 'Classic lash set', 11, 1.5, 25000],
+      ['b3', 'Tolu', 'Zainab', 'Colour', 11.5, 3, 55000],
+      ['b6', 'Bisi', 'Temi', 'Cornrows', 13, 3, 30000],
+      ['b10', 'Kemi', 'Amina', 'Gel manicure', 13, 1, 15000],
+      ['b13', 'Ifeoma', 'Kiki', 'Hybrid lash set', 14, 2, 32000],
+      ['b4', 'Tolu', 'Chioma', 'Silk press', 15, 2, 35000],
+      ['b11', 'Kemi', 'Lola', 'Acrylic full set', 15, 2, 28000],
+      ['b7', 'Bisi', 'Halima', 'Loc retwist', 16.5, 2.5, 28000]
+    ].map(([id, stylist, client, service, start, dur, price]) => ({ id, stylist, client, service, start, dur, price, dep: Math.round(price * 0.3), status: S.st[id] }));
+    const fmt = h => `${String(Math.floor(h)).padStart(2, '0')}:${h % 1 ? String(Math.round((h % 1) * 60)).padStart(2, '0') : '00'}`;
+    const chip = {
+      'Held': { bg: 'transparent', fg: '#474E31', bd: '1px dashed #474E31', dot: '#474E31' },
+      'Confirmed': { bg: '#E3E2D0', fg: '#474E31', bd: '1px solid #E3E2D0', dot: '#474E31' },
+      'Arrived': { bg: '#474E31', fg: '#F4EFE6', bd: '1px solid #474E31', dot: '#F4EFE6' },
+      'Completed': { bg: '#1D1B17', fg: '#F4EFE6', bd: '1px solid #1D1B17', dot: '#F4EFE6' },
+      'No-show': { bg: '#F0DDD3', fg: '#8B3A26', bd: '1px solid #F0DDD3', dot: '#8B3A26' },
+      'Cancelled by salon': { bg: 'transparent', fg: '#8B3A26', bd: '1px solid #DAD1C1', dot: '#8B3A26' }
+    };
+    const block = {
+      'Held': { bg: 'transparent', fg: '#474E31', bd: '1px dashed #474E31', td: 'none' },
+      'Confirmed': { bg: '#E3E2D0', fg: '#2F3420', bd: '1px solid #D2D1BC', td: 'none' },
+      'Arrived': { bg: '#474E31', fg: '#F4EFE6', bd: '1px solid #474E31', td: 'none' },
+      'Completed': { bg: '#EBE4D8', fg: '#5E574C', bd: '1px solid #DAD1C1', td: 'none' },
+      'No-show': { bg: '#F0DDD3', fg: '#8B3A26', bd: '1px solid #E6C9BB', td: 'line-through' },
+      'Cancelled by salon': { bg: 'transparent', fg: '#8B3A26', bd: '1px solid #DAD1C1', td: 'line-through' }
+    };
+    const staff = ['Adaeze', 'Tolu', 'Bisi', 'Kemi', 'Ifeoma'];
+    const cols = px => staff.map(p => ({ items: B.filter(b => b.stylist === p).map(b => ({ ...b, ...block[b.status], top: (b.start - 9) * px + 'px', h: b.dur * px - 3 + 'px', short: b.service.split(' ')[0], range: `${fmt(b.start)} – ${fmt(b.start + b.dur)}` })) }));
+    const live = B.filter(b => b.status !== 'Cancelled by salon');
+    const deposits = live.filter(b => b.status !== 'Held').reduce((a, b) => a + b.dep, 0);
+    const balance = live.filter(b => b.status !== 'No-show' && b.status !== 'Held').reduce((a, b) => a + b.price - b.dep, 0);
+    const set = (id, v) => this.setState(s => ({ st: { ...s.st, [id]: v } }));
+    const act = (id, label, v, tone) => ({ label, run: () => set(id, v), bg: tone === 'p' ? '#1D1B17' : 'transparent', fg: tone === 'p' ? '#F4EFE6' : tone === 'r' ? '#8B3A26' : '#1D1B17', bd: tone === 'p' ? '1px solid #1D1B17' : tone === 'r' ? '1px solid #D7B9AA' : '1px solid #BFB5A3' });
+    return {
+      staff,
+      staffD: staff.map(p => ({ name: p, count: B.filter(b => b.stylist === p).length })),
+      stats: [
+        { label: 'Bookings today', value: String(live.length), sub: `${B.filter(b => b.status === 'Completed').length} done · ${B.filter(b => b.status === 'Arrived').length} in the chair` },
+        { label: 'Deposits collected', value: n(deposits), sub: 'for today’s bookings' },
+        { label: 'Balance due today', value: n(balance), sub: 'collected in the studio' },
+        { label: 'No-show rate · 30 days', value: '3.1%', sub: '2 of 64 bookings' }
+      ],
+      hoursM: [9, 10, 11, 12, 13, 14, 15, 16, 17, 18].map(h => ({ l: h, top: (h - 9) * 44 + 'px' })),
+      hoursD: [9, 10, 11, 12, 13, 14, 15, 16, 17, 18].map(h => ({ l: fmt(h), top: (h - 9) * 56 + 'px' })),
+      columnsM: cols(44), columnsD: cols(56),
+      nowTopM: (12 + 10 / 60 - 9) * 44 + 'px', nowTopD: (12 + 10 / 60 - 9) * 56 + 'px',
+      countAll: live.length,
+      list: B.map(b => {
+        const acts = b.status === 'Completed' || b.status === 'No-show' || b.status === 'Cancelled by salon'
+          ? [act(b.id, 'Undo', 'Confirmed', 's')]
+          : [b.status === 'Arrived' ? act(b.id, 'Completed', 'Completed', 'p') : act(b.id, 'Mark arrived', 'Arrived', 'p'), act(b.id, 'Completed', 'Completed', 's'), act(b.id, 'No-show', 'No-show', 'r'), act(b.id, 'Cancel by salon', 'Cancelled by salon', 'r')];
+        return {
+          ...b, start: fmt(b.start), chip: chip[b.status], open: S.open === b.id,
+          money: b.status === 'Held' ? `Awaiting deposit ${n(b.dep)}` : b.status === 'No-show' ? `Deposit ${n(b.dep)} kept` : b.status === 'Cancelled by salon' ? `Refund ${n(b.dep)} due` : b.status === 'Completed' ? `Paid in full ${n(b.price)}` : `Paid ${n(b.dep)} · ${n(b.price - b.dep)} due`,
+          toggle: () => this.setState(s => ({ open: s.open === b.id ? null : b.id })), actions: acts
+        };
+      }),
+      staffTabs: staff.map((p, i) => ({ name: p, fg: i === 0 ? '#1D1B17' : '#5E574C', bd: i === 0 ? '2px solid #1D1B17' : '2px solid transparent' })),
+      week: [['Mon', 0], ['Tue', 1, '09:00 – 19:00'], ['Wed', 1, '09:00 – 19:00'], ['Thu', 1, '10:00 – 19:00'], ['Fri', 1, '09:00 – 19:00'], ['Sat', 1, '09:00 – 17:00'], ['Sun', 0]].map(([d, on, h]) => ({
+        d, hours: on ? h : d === 'Mon' ? 'Salon closed' : 'Off', fg: on ? '#1D1B17' : '#8A8274', dayFg: on ? '#1D1B17' : '#8A8274',
+        trk: on ? '#474E31' : '#DAD1C1', knob: on ? '16px' : '2px'
+      })),
+      outbox: [
+        { to: 'Amaka', kind: 'Receipt', status: 'Read · 09:42', stFg: '#474E31', bg: '#FBF9F4', bd: '1px solid #FBF9F4', fg: '#1D1B17', body: 'Hi Amaka, your chair is held. Knotless braids with Adaeze, Wed 7 Oct at 10:00. Deposit ₦25,500 received, ₦59,500 on the day. Ref ODR-4K7Q.' },
+        { to: 'Kiki', kind: 'Reminder · 24h', status: 'Delivered · Tue 14:00', stFg: '#5E574C', bg: '#FBF9F4', bd: '1px solid #FBF9F4', fg: '#1D1B17', body: 'See you tomorrow at 14:00 with Ifeoma for your hybrid lash set. Reply here if anything changes.' },
+        { to: 'Yewande', kind: 'No-show', status: 'Sent · 09:20', stFg: '#5E574C', bg: '#FBF9F4', bd: '1px solid #FBF9F4', fg: '#1D1B17', body: 'We missed you at 09:00 today. Your ₦4,500 deposit covers Kemi’s time. We’d love to see you another day.' },
+        { to: 'Halima', kind: 'Reminder · 24h', status: 'Failed · retry', stFg: '#8B3A26', bg: 'transparent', bd: '1px solid #D7B9AA', fg: '#5E574C', body: 'Number not on WhatsApp. Send by SMS or call.' },
+        { to: 'Tomi', kind: 'Reminder · 24h', status: 'Queued · 13:00', stFg: '#5E574C', bg: 'transparent', bd: '1px dashed #9C9486', fg: '#5E574C', body: 'See you tomorrow at 13:00 with Bisi. Reply here if anything changes.' },
+        { to: 'Bola', kind: 'Reminder · 24h', status: 'Queued · 14:30', stFg: '#5E574C', bg: 'transparent', bd: '1px dashed #9C9486', fg: '#5E574C', body: 'See you tomorrow at 14:30 with Tolu. The 24h window starts now.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

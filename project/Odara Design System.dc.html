@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Be+Vietnam+Pro:wght@300;400;500&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#E7E1D6;color:#1D1B17;font-family:'Be Vietnam Pro',sans-serif;-webkit-font-smoothing:antialiased}a{color:#474E31}a:hover{color:#1D1B17}*{box-sizing:border-box}</style>
+</helmet>
+<div style="padding:64px;display:flex;flex-direction:column;gap:48px;max-width:1440px">
+  <header style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">Design system · v1</div>
+      <div style="font-family:'EB Garamond',serif;font-size:96px;line-height:1.1;letter-spacing:0.01em">Ọdàrà</div>
+    </div>
+    <div style="display:flex;gap:16px;font-size:14px"><a href="Odara Public Site.dc.html">Public site</a><a href="Odara Booking.dc.html">Booking flow</a><a href="Odara Studio.dc.html">Studio</a></div>
+  </header>
+
+  <section style="background:#F4EFE6;padding:48px;display:flex;flex-direction:column;gap:32px">
+    <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">Colour</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:24px">
+      <sc-for list="{{ colors }}" as="c" hint-placeholder-count="9">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="height:120px;background:{{ c.hex }};border:1px solid #DAD1C1"></div>
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <div style="font-size:14px;font-weight:500">{{ c.name }}</div>
+            <div style="font-size:12px;color:#5E574C;font-family:ui-monospace,monospace">{{ c.hex }}</div>
+            <div style="font-size:12px;color:#5E574C">{{ c.use }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="background:#F4EFE6;padding:48px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:48px">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">Type · EB Garamond + Be Vietnam Pro</div>
+      <sc-for list="{{ type }}" as="t" hint-placeholder-count="8">
+        <div style="display:grid;grid-template-columns:120px minmax(0,1fr);gap:24px;align-items:baseline;border-top:1px solid #DAD1C1;padding-top:16px">
+          <div style="font-size:12px;color:#5E574C;font-family:ui-monospace,monospace">{{ t.label }}</div>
+          <div style="font-family:{{ t.family }};font-size:{{ t.size }};line-height:{{ t.lh }};font-weight:{{ t.weight }};letter-spacing:{{ t.ls }};text-transform:{{ t.tt }}">{{ t.sample }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">Diacritic check</div>
+      <div style="display:flex;flex-direction:column;gap:16px;border:1px solid #DAD1C1;padding:32px">
+        <div style="font-family:'EB Garamond',serif;font-size:120px;line-height:1.15">Ọdàrà</div>
+        <div style="font-family:'EB Garamond',serif;font-size:32px;font-style:italic">Ọdàrà · ọ à è é ẹ ṣ ń</div>
+        <div style="font-size:20px;font-weight:300">Ọdàrà · ọ à è é ẹ ṣ ń</div>
+        <div style="font-size:13px;color:#5E574C;line-height:1.6">Both families ship the Vietnamese subset, which covers Ọ (U+1ECC) and ẹ, ṣ. Keep line-height at 1.1 or above on the wordmark so the dot below is never clipped.</div>
+      </div>
+      <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C;margin-top:16px">Spacing · 4pt base</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <sc-for list="{{ spacing }}" as="s" hint-placeholder-count="9">
+          <div style="display:flex;align-items:center;gap:16px">
+            <div style="width:40px;font-size:12px;font-family:ui-monospace,monospace;color:#5E574C">{{ s.v }}</div>
+            <div style="height:10px;width:{{ s.px }};background:#474E31"></div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="font-size:13px;color:#5E574C;line-height:1.6">Radius 2px on controls, 0 on imagery. No shadows; separation comes from surface tone and 1px lines.</div>
+    </div>
+  </section>
+
+  <section style="background:#F4EFE6;padding:48px;display:flex;flex-direction:column;gap:40px">
+    <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">Button</div>
+    <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-end">
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-size:11px;color:#5E574C;font-family:ui-monospace,monospace">primary</div><button style="height:52px;padding:0 28px;background:#1D1B17;color:#F4EFE6;border:0;border-radius:2px;font:500 15px 'Be Vietnam Pro';letter-spacing:0.02em;cursor:pointer;transition:background .2s" style-hover="background:#474E31">Pay ₦25,500 deposit</button></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-size:11px;color:#5E574C;font-family:ui-monospace,monospace">primary · hover</div><button style="height:52px;padding:0 28px;background:#474E31;color:#F4EFE6;border:0;border-radius:2px;font:500 15px 'Be Vietnam Pro';letter-spacing:0.02em">Pay ₦25,500 deposit</button></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-size:11px;color:#5E574C;font-family:ui-monospace,monospace">primary · loading</div><button style="height:52px;padding:0 28px;background:#1D1B17;color:#B9B2A5;border:0;border-radius:2px;font:500 15px 'Be Vietnam Pro';display:flex;align-items:center;gap:12px"><span style="width:14px;height:14px;border:1.5px solid #5E574C;border-top-color:#F4EFE6;border-radius:50%"></span>Processing</button></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-size:11px;color:#5E574C;font-family:ui-monospace,monospace">primary · disabled</div><button style="height:52px;padding:0 28px;background:#DAD1C1;color:#8A8274;border:0;border-radius:2px;font:500 15px 'Be Vietnam Pro'">Continue</button></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-size:11px;color:#5E574C;font-family:ui-monospace,monospace">secondary</div><button style="height:52px;padding:0 28px;background:transparent;color:#1D1B17;border:1px solid #1D1B17;border-radius:2px;font:500 15px 'Be Vietnam Pro'" style-hover="background:#EBE4D8">Add to calendar</button></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-size:11px;color:#5E574C;font-family:ui-monospace,monospace">text</div><button style="height:52px;padding:0 4px;background:transparent;color:#1D1B17;border:0;border-bottom:1px solid #1D1B17;border-radius:0;font:400 15px 'Be Vietnam Pro'">View services</button></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><div style="font-size:11px;color:#5E574C;font-family:ui-monospace,monospace">destructive</div><button style="height:52px;padding:0 28px;background:transparent;color:#8B3A26;border:1px solid #8B3A26;border-radius:2px;font:500 15px 'Be Vietnam Pro'">Cancel booking</button></div>
+    </div>
+
+    <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C;margin-top:16px">Input</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:32px">
+      <sc-for list="{{ inputs }}" as="f" hint-placeholder-count="5">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:11px;color:#5E574C;font-family:ui-monospace,monospace">{{ f.state }}</div>
+          <label style="font-size:13px;color:{{ f.labelColor }}">{{ f.label }}</label>
+          <div style="height:52px;border:0;border-bottom:{{ f.border }};background:{{ f.bg }};display:flex;align-items:center;padding:0 2px;font-size:16px;color:{{ f.color }}">{{ f.value }}</div>
+          <div style="font-size:12px;color:{{ f.helpColor }};min-height:16px">{{ f.help }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="background:#F4EFE6;padding:48px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">Slot cell</div>
+      <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px">
+        <div style="display:flex;flex-direction:column;gap:8px"><div style="height:48px;border:1px solid #BFB5A3;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:15px">10:00</div><div style="font-size:11px;color:#5E574C;font-family:ui-monospace,monospace">available</div></div>
+        <div style="display:flex;flex-direction:column;gap:8px"><div style="height:48px;border:1px solid #1D1B17;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:15px;background:#EBE4D8">10:00</div><div style="font-size:11px;color:#5E574C;font-family:ui-monospace,monospace">hover</div></div>
+        <div style="display:flex;flex-direction:column;gap:8px"><div style="height:48px;background:#474E31;color:#F4EFE6;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:500">10:00</div><div style="font-size:11px;color:#5E574C;font-family:ui-monospace,monospace">selected</div></div>
+        <div style="display:flex;flex-direction:column;gap:8px"><div style="height:48px;border:1px solid #E3DBCD;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:15px;color:#9C9486;text-decoration:line-through">10:00</div><div style="font-size:11px;color:#5E574C;font-family:ui-monospace,monospace">taken</div></div>
+        <div style="display:flex;flex-direction:column;gap:8px"><div style="height:48px;border:1px dashed #474E31;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:15px;color:#474E31">10:00</div><div style="font-size:11px;color:#5E574C;font-family:ui-monospace,monospace">held by you</div></div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <div style="width:56px;height:72px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border-bottom:1px solid #DAD1C1"><div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#5E574C">Tue</div><div style="font-family:'EB Garamond',serif;font-size:24px">6</div></div>
+        <div style="width:56px;height:72px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border-bottom:2px solid #1D1B17"><div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#1D1B17">Wed</div><div style="font-family:'EB Garamond',serif;font-size:24px">7</div></div>
+        <div style="width:56px;height:72px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border-bottom:1px solid #DAD1C1;color:#B0A898"><div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase">Mon</div><div style="font-family:'EB Garamond',serif;font-size:24px">5</div><div style="font-size:10px">Closed</div></div>
+        <div style="width:56px;height:72px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border-bottom:1px solid #DAD1C1"><div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#5E574C">Fri</div><div style="font-family:'EB Garamond',serif;font-size:24px">9</div><div style="font-size:10px;color:#5E574C">Full</div></div>
+      </div>
+      <div style="font-size:13px;color:#5E574C;line-height:1.6">Date strip: default, selected (2px ink rule), closed (Mon, faded with label), full (all slots taken, still selectable to view).</div>
+
+      <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C;margin-top:24px">Status chip</div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px">
+        <sc-for list="{{ chips }}" as="c" hint-placeholder-count="8">
+          <span style="display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:13px;font-size:12px;font-weight:500;background:{{ c.bg }};color:{{ c.fg }};border:{{ c.bd }};text-decoration:{{ c.td }}"><span style="width:6px;height:6px;border-radius:50%;background:{{ c.dot }}"></span>{{ c.label }}</span>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C">Service row · menu style</div>
+      <div style="display:flex;flex-direction:column">
+        <div style="display:flex;flex-direction:column;gap:6px;padding:20px 0;border-top:1px solid #DAD1C1">
+          <div style="display:flex;align-items:baseline;gap:12px"><div style="font-family:'EB Garamond',serif;font-size:24px">Knotless braids</div><div style="flex:1;border-bottom:1px dotted #BFB5A3;transform:translateY(-6px)"></div><div style="font-size:16px">₦85,000</div></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;color:#5E574C"><span>6h · waist length, pre-stretched hair included</span><span>₦25,500 to hold</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;padding:20px 16px;border-top:1px solid #DAD1C1;background:#EBE4D8">
+          <div style="display:flex;align-items:baseline;gap:12px"><div style="font-family:'EB Garamond',serif;font-size:24px">Silk press</div><div style="flex:1;border-bottom:1px dotted #BFB5A3;transform:translateY(-6px)"></div><div style="font-size:16px">₦35,000</div></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;color:#5E574C"><span>2h · wash, treatment, press</span><span>₦10,500 to hold</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;padding:20px 16px;border-top:1px solid #DAD1C1;border-bottom:1px solid #DAD1C1;box-shadow:inset 3px 0 0 #474E31">
+          <div style="display:flex;align-items:baseline;gap:12px"><div style="font-family:'EB Garamond',serif;font-size:24px">Gel manicure</div><div style="flex:1;border-bottom:1px dotted #BFB5A3;transform:translateY(-6px)"></div><div style="font-size:16px">₦15,000</div></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;color:#5E574C"><span>1h · shape, cuticle care, gel colour</span><span>₦4,500 to hold</span></div>
+        </div>
+      </div>
+      <div style="font-size:11px;color:#5E574C;font-family:ui-monospace,monospace">default · hover · selected (in booking flow)</div>
+
+      <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E574C;margin-top:24px">Message bubble</div>
+      <div style="background:#E6E0D3;padding:24px;display:flex;flex-direction:column;gap:12px">
+        <div style="align-self:flex-start;max-width:300px;background:#FBF9F4;padding:12px 14px 8px;border-radius:2px 12px 12px 12px;display:flex;flex-direction:column;gap:6px">
+          <div style="font-size:12px;font-weight:500;color:#474E31">Ọdàrà</div>
+          <div style="font-size:14px;line-height:1.5">Your chair is held. Knotless braids with Adaeze, Wed 7 Oct at 10:00. Deposit ₦25,500 received. ₦59,500 on the day. Ref ODR-4K7Q</div>
+          <div style="align-self:flex-end;font-size:11px;color:#5E574C">09:42</div>
+        </div>
+        <div style="align-self:flex-start;max-width:300px;background:transparent;border:1px dashed #9C9486;padding:12px 14px 8px;border-radius:2px 12px 12px 12px;display:flex;flex-direction:column;gap:6px">
+          <div style="font-size:14px;line-height:1.5;color:#5E574C">A reminder: we'll see you tomorrow at 10:00.</div>
+          <div style="align-self:flex-end;font-size:11px;color:#5E574C">Queued · Tue 10:00</div>
+        </div>
+      </div>
+      <div style="font-size:11px;color:#5E574C;font-family:ui-monospace,monospace">sent · queued</div>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const G = "'EB Garamond',serif", S = "'Be Vietnam Pro',sans-serif";
+    return {
+      colors: [
+        { name: 'Linen', hex: '#F4EFE6', use: 'Page base' },
+        { name: 'Parchment', hex: '#EBE4D8', use: 'Surfaces, hover' },
+        { name: 'Line', hex: '#DAD1C1', use: 'Dividers, borders' },
+        { name: 'Ink', hex: '#1D1B17', use: 'Type, primary button' },
+        { name: 'Ink soft', hex: '#5E574C', use: 'Secondary text (6:1)' },
+        { name: 'Olive', hex: '#474E31', use: 'Accent, selected, confirmed' },
+        { name: 'Olive mist', hex: '#E3E2D0', use: 'Accent tint' },
+        { name: 'Rust', hex: '#8B3A26', use: 'Errors, no-show only' },
+        { name: 'Rust mist', hex: '#F0DDD3', use: 'Error tint' }
+      ],
+      type: [
+        { label: 'Display 72', family: G, size: '72px', lh: '1.1', weight: 400, ls: '0', tt: 'none', sample: 'Ọdàrà' },
+        { label: 'H1 44', family: G, size: '44px', lh: '1.1', weight: 400, ls: '-0.01em', tt: 'none', sample: 'Your deposit holds your chair.' },
+        { label: 'H2 30', family: G, size: '30px', lh: '1.2', weight: 400, ls: '0', tt: 'none', sample: 'How booking works' },
+        { label: 'H3 22', family: G, size: '22px', lh: '1.3', weight: 400, ls: '0', tt: 'none', sample: 'Knotless braids' },
+        { label: 'Body 16', family: S, size: '16px', lh: '1.65', weight: 300, ls: '0', tt: 'none', sample: 'The rest is paid on the day, after you see the work.' },
+        { label: 'UI 15', family: S, size: '15px', lh: '1.4', weight: 400, ls: '0', tt: 'none', sample: 'Wed 7 Oct · 10:00 · Adaeze' },
+        { label: 'Small 13', family: S, size: '13px', lh: '1.5', weight: 400, ls: '0', tt: 'none', sample: '6h · ₦25,500 to hold' },
+        { label: 'Eyebrow 12', family: S, size: '12px', lh: '1.4', weight: 400, ls: '0.14em', tt: 'uppercase', sample: 'Lekki Phase 1' }
+      ],
+      spacing: [4, 8, 12, 16, 24, 32, 48, 64, 96].map(v => ({ v, px: v * 2 + 'px' })),
+      inputs: [
+        { state: 'default', label: 'Your name', value: '', border: '1px solid #BFB5A3', bg: 'transparent', color: '#1D1B17', labelColor: '#5E574C', help: '', helpColor: '#5E574C' },
+        { state: 'focus', label: 'Your name', value: 'Amaka|', border: '2px solid #1D1B17', bg: 'transparent', color: '#1D1B17', labelColor: '#1D1B17', help: '', helpColor: '#5E574C' },
+        { state: 'filled', label: 'WhatsApp number', value: '+234 803 555 0192', border: '1px solid #BFB5A3', bg: 'transparent', color: '#1D1B17', labelColor: '#5E574C', help: 'Your receipt and reminder go here.', helpColor: '#5E574C' },
+        { state: 'error', label: 'WhatsApp number', value: '+234 803 55', border: '2px solid #8B3A26', bg: 'transparent', color: '#1D1B17', labelColor: '#8B3A26', help: 'This number looks short. Check and try again.', helpColor: '#8B3A26' },
+        { state: 'disabled', label: 'Stylist', value: 'Adaeze', border: '1px dashed #DAD1C1', bg: 'transparent', color: '#9C9486', labelColor: '#9C9486', help: '', helpColor: '#5E574C' }
+      ],
+      chips: [
+        { label: 'Held', bg: 'transparent', fg: '#474E31', bd: '1px dashed #474E31', dot: '#474E31', td: 'none' },
+        { label: 'Confirmed', bg: '#E3E2D0', fg: '#474E31', bd: '1px solid #E3E2D0', dot: '#474E31', td: 'none' },
+        { label: 'Arrived', bg: '#474E31', fg: '#F4EFE6', bd: '1px solid #474E31', dot: '#F4EFE6', td: 'none' },
+        { label: 'Completed', bg: '#1D1B17', fg: '#F4EFE6', bd: '1px solid #1D1B17', dot: '#F4EFE6', td: 'none' },
+        { label: 'No-show', bg: '#F0DDD3', fg: '#8B3A26', bd: '1px solid #F0DDD3', dot: '#8B3A26', td: 'none' },
+        { label: 'Cancelled', bg: 'transparent', fg: '#5E574C', bd: '1px solid #DAD1C1', dot: '#B0A898', td: 'none' },
+        { label: 'Cancelled by salon', bg: 'transparent', fg: '#8B3A26', bd: '1px solid #DAD1C1', dot: '#8B3A26', td: 'none' },
+        { label: 'Expired', bg: '#EBE4D8', fg: '#5E574C', bd: '1px solid #EBE4D8', dot: '#B0A898', td: 'none' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
