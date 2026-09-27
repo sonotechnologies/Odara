@@ -1,1 +1,112 @@
-{}
+{
+  "hero": {
+    "id": 31266676,
+    "src": "https://images.pexels.com/photos/31266676/pexels-photo-31266676.jpeg",
+    "width": 4160,
+    "height": 6240,
+    "alt": "A classic black and white portrait of a woman in a satin dress, exuding elegance.",
+    "avgColor": "#232323",
+    "photographer": "paccy Zibra photography",
+    "photographerUrl": "https://www.pexels.com/@paccy-zibra-photography-796793143",
+    "url": "https://www.pexels.com/photo/elegant-black-and-white-portrait-of-a-woman-31266676/"
+  },
+  "gallery-braids": {
+    "id": 4800598,
+    "src": "https://images.pexels.com/photos/4800598/pexels-photo-4800598.jpeg",
+    "width": 4000,
+    "height": 6000,
+    "alt": "Close-up of a woman with vibrant red braided hair styled in a bun and large hoop earrings.",
+    "avgColor": "#CDA297",
+    "photographer": "Eze Joshua",
+    "photographerUrl": "https://www.pexels.com/@uncoveredlens",
+    "url": "https://www.pexels.com/photo/woman-with-red-braided-hair-posing-4800598/"
+  },
+  "gallery-nails": {
+    "id": 6941115,
+    "src": "https://images.pexels.com/photos/6941115/pexels-photo-6941115.jpeg",
+    "width": 6240,
+    "height": 4160,
+    "alt": "Close-up of hands resting, showcasing elegant nude nails on a white fabric.",
+    "avgColor": "#87818D",
+    "photographer": "cottonbro studio",
+    "photographerUrl": "https://www.pexels.com/@cottonbro",
+    "url": "https://www.pexels.com/photo/photo-of-a-woman-s-hands-6941115/"
+  },
+  "gallery-lashes": {
+    "id": 8554941,
+    "src": "https://images.pexels.com/photos/8554941/pexels-photo-8554941.jpeg",
+    "width": 6000,
+    "height": 4000,
+    "alt": "Detailed view of a beautician applying eyelash extensions to a woman's eyes.",
+    "avgColor": "#69544F",
+    "photographer": "Екатерина Мясоед",
+    "photographerUrl": "https://www.pexels.com/@31299941",
+    "url": "https://www.pexels.com/photo/close-up-of-woman-at-beautician-8554941/"
+  },
+  "gallery-locs": {
+    "id": 7951589,
+    "src": "https://images.pexels.com/photos/7951589/pexels-photo-7951589.jpeg",
+    "width": 6000,
+    "height": 4000,
+    "alt": "Detailed view of artistic twisted black hairstyle on a woman showcasing hair texture.",
+    "avgColor": "#606058",
+    "photographer": "Felicity Tai",
+    "photographerUrl": "https://www.pexels.com/@felicity-tai",
+    "url": "https://www.pexels.com/photo/a-woman-with-braided-hair-7951589/"
+  },
+  "stylist-adaeze": {
+    "id": 16563139,
+    "src": "https://images.pexels.com/photos/16563139/pexels-photo-16563139.jpeg",
+    "width": 5464,
+    "height": 8192,
+    "alt": "Close-up view of a beautifully intricate braided hair bun from above, highlighting the craftsmanship.",
+    "avgColor": "#AD9E99",
+    "photographer": "K",
+    "photographerUrl": "https://www.pexels.com/@kelly",
+    "url": "https://www.pexels.com/photo/brunette-braided-hair-16563139/"
+  },
+  "stylist-tolu": {
+    "id": 26759527,
+    "src": "https://images.pexels.com/photos/26759527/pexels-photo-26759527.jpeg",
+    "width": 4000,
+    "height": 6000,
+    "alt": "Caucasian woman hair stylist organizing tools in modern salon setting.",
+    "avgColor": "#837477",
+    "photographer": "Lilian Souza",
+    "photographerUrl": "https://www.pexels.com/@lilian-souza-1459007076",
+    "url": "https://www.pexels.com/photo/woman-with-hair-styling-products-26759527/"
+  },
+  "stylist-bisi": {
+    "id": 37010087,
+    "src": "https://images.pexels.com/photos/37010087/pexels-photo-37010087.jpeg",
+    "width": 4480,
+    "height": 5600,
+    "alt": "A stylish black woman poses indoors wearing a yellow dress, showcasing elegant natural hair and soft glam makeup.",
+    "avgColor": "#887163",
+    "photographer": "Tress Alchemy Inc.",
+    "photographerUrl": "https://www.pexels.com/@tress-alchemy-inc-2160022599",
+    "url": "https://www.pexels.com/photo/elegant-black-woman-posing-with-natural-hair-37010087/"
+  },
+  "stylist-kemi": {
+    "id": 3997350,
+    "src": "https://images.pexels.com/photos/3997350/pexels-photo-3997350.jpeg",
+    "width": 4000,
+    "height": 6000,
+    "alt": "Nail technician with red hair applying nail art in a salon, wearing black gloves and mask.",
+    "avgColor": "#5A5453",
+    "photographer": "cottonbro studio",
+    "photographerUrl": "https://www.pexels.com/@cottonbro",
+    "url": "https://www.pexels.com/photo/woman-in-black-long-sleeve-shirt-dong-manicure-3997350/"
+  },
+  "stylist-ifeoma": {
+    "id": 38846093,
+    "src": "https://images.pexels.com/photos/38846093/pexels-photo-38846093.jpeg",
+    "width": 4160,
+    "height": 6240,
+    "alt": "A beautiful woman having makeup applied in a professional setting.",
+    "avgColor": "#B4A296",
+    "photographer": "Chrichna Munkita",
+    "photographerUrl": "https://www.pexels.com/@chrichna-munkita-2097723023",
+    "url": "https://www.pexels.com/photo/elegant-portrait-of-a-woman-getting-makeup-done-38846093/"
+  }
+}
