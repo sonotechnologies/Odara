@@ -56,7 +56,27 @@ The app picks its driver from the URL: the Neon serverless driver (WebSockets, w
 | Manage a booking | `/booking/ODR-XXXX` | Shows the rule that applies right now. Reschedule or cancel. |
 | Returning client | `/book/again` | Phone **+234 803 555 0192** (Amaka, ₦5,000 credit). The OTP appears in a toast. |
 | One-tap rebook | `/r/amaka` | The link a WhatsApp reminder would carry. It opens the fast path pre-filled. |
-| Studio | `/studio` | **owner@odara.demo / odara-demo** (also shown on the login page). |
+| Studio | `/studio` | **owner@odara.demo / odara-demo** (also shown on the login page). See *Studio login* below. |
+
+## Studio login
+
+The owner signs in at `/studio/login`. `npm run db:seed` creates the demo account from `STUDIO_DEMO_EMAIL` / `STUDIO_DEMO_PASSWORD` (defaults `owner@odara.demo` / `odara-demo`), and the login page shows those credentials so portfolio visitors can look around.
+
+To use your own login instead, without touching any bookings:
+
+```bash
+npm run studio:owner -- you@example.com "a long password" "Your name"
+npm run studio:owner -- you@example.com "a long password" "Your name" --remove-demo   # also delete the demo account
+```
+
+Then set `STUDIO_SHOW_DEMO_LOGIN=false` in Vercel so the page stops showing the demo credentials. Sessions last 12 hours in an HTTP-only signed cookie, and failed attempts are slowed down.
+
+## Performance
+
+- **Marketing pages** (home, services, stylists, policy, credits) are prerendered and served from Vercel's CDN, refreshed every 10 minutes. The build therefore needs `DATABASE_URL`.
+- **The catalogue** (services, stylists and who does what) loads in one query and is cached across requests for 10 minutes. The seed gives it stable ids derived from slugs, so re-seeding never breaks the cache.
+- **Booking, manage and Studio pages** are rendered per request. They batch their database reads into as few round trips as possible, and show skeletons while loading.
+- **Neon and Vercel should run in the same region** (see the deploy steps).
 
 ## How it works
 

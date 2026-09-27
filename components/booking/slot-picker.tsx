@@ -146,10 +146,10 @@ export function SlotPicker({ days, initialDay, serviceId, stylist, serviceLabel,
 
   return (
     <>
-      <div className="flex-1 lg:mx-auto lg:grid lg:w-full lg:max-w-[1440px] lg:grid-cols-[400px_minmax(0,1fr)] lg:gap-24 lg:px-16 lg:pt-12">
+      <div className="flex-1 md:mx-auto md:w-full md:max-w-[720px] lg:grid lg:max-w-[1440px] lg:grid-cols-[400px_minmax(0,1fr)] lg:gap-24 lg:px-16 lg:pt-12">
         {desktopAside}
         <div className="flex flex-col lg:gap-8">
-          <p className="px-5 text-sm text-ink-soft lg:hidden">
+          <p className="px-5 text-sm text-ink-soft md:px-0 lg:hidden">
             {day?.month} · times show your start, {durationLabel} each
           </p>
           {notice && <Notice tone="rust">{notice}</Notice>}
@@ -159,7 +159,7 @@ export function SlotPicker({ days, initialDay, serviceId, stylist, serviceLabel,
             ref={stripRef}
             role="group"
             aria-label="Choose a day"
-            className="flex snap-x overflow-x-auto px-3 pt-5 [scrollbar-width:none] lg:px-0 lg:pt-0 [&::-webkit-scrollbar]:hidden"
+            className="flex snap-x overflow-x-auto px-3 pt-5 md:px-0 [scrollbar-width:none] md:px-0 lg:pt-0 [&::-webkit-scrollbar]:hidden"
           >
             {days.map((d) => {
               const on = d.key === dayKey
@@ -171,7 +171,7 @@ export function SlotPicker({ days, initialDay, serviceId, stylist, serviceLabel,
                   aria-label={`${d.label}${d.closed ? ', closed' : d.full ? ', fully booked' : ''}`}
                   onClick={() => pickDay(d.key)}
                   className={cx(
-                    'flex h-[78px] w-[calc((100vw-24px)/7)] min-w-12 shrink-0 snap-start flex-col items-center justify-center gap-[3px] transition-colors duration-200 lg:h-24 lg:w-[12.5%] lg:gap-1',
+                    'flex h-[78px] w-[calc((100vw-24px)/7)] min-w-12 md:w-[calc(100%/7)] shrink-0 snap-start flex-col items-center justify-center gap-[3px] transition-colors duration-200 lg:h-24 lg:w-[12.5%] lg:gap-1',
                     on ? 'border-b-2 border-ink text-ink' : 'border-b border-line',
                     !on && (d.closed ? 'text-closed' : 'text-ink-soft hover:text-ink'),
                   )}
@@ -187,7 +187,7 @@ export function SlotPicker({ days, initialDay, serviceId, stylist, serviceLabel,
           {error && <Notice tone="rust">{error}</Notice>}
 
           {/* Time grid */}
-          <div className="flex flex-col gap-5 px-5 pt-6 pb-8 lg:px-0 lg:pt-0" aria-live="polite">
+          <div className="flex flex-col gap-5 px-5 pt-6 pb-8 md:px-0 lg:pt-0" aria-live="polite">
             {day?.closed ? (
               <div className="flex flex-col gap-2 border-t border-line py-8 lg:py-10">
                 <div className="font-serif text-2xl lg:text-3xl">{day.closedNote ?? 'Closed.'}</div>

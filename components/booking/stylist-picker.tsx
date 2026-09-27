@@ -32,7 +32,7 @@ export function StylistPicker({
   return (
     <form action="/book/time" method="get" className="flex flex-1 flex-col">
       <input type="hidden" name="service" value={serviceSlug} />
-      <fieldset className="flex flex-1 flex-col gap-3 px-5 pt-6 pb-8 lg:mx-auto lg:w-full lg:max-w-[640px] lg:px-0">
+      <fieldset className="flex flex-1 flex-col gap-3 px-5 pt-6 pb-8 md:mx-auto md:w-full md:max-w-[640px] md:px-0">
         <legend className="sr-only">Choose a stylist</legend>
         <label className={row(sel === 'any')}>
           <input type="radio" name="stylist" value="any" checked={sel === 'any'} onChange={() => setSel('any')} className="sr-only" />

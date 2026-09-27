@@ -41,7 +41,7 @@ export function FastPath(props: {
 
   return (
     <>
-      <div className="mx-5 flex items-center justify-between border-y border-line py-[18px] lg:mx-0">
+      <div className="mx-5 flex items-center justify-between border-y border-line py-[18px] md:mx-0">
         <div className="flex flex-col gap-[3px]">
           <div className="font-serif text-[22px]">{props.heading}</div>
           <div className="text-[13px] text-ink-soft">{props.meta}</div>
@@ -52,7 +52,7 @@ export function FastPath(props: {
       </div>
 
       {changing && (
-        <div className="mx-5 grid animate-fade-up grid-cols-2 gap-4 border-b border-line py-4 lg:mx-0">
+        <div className="mx-5 grid animate-fade-up grid-cols-2 gap-4 border-b border-line py-4 md:mx-0">
           <label className="flex flex-col gap-1.5 text-[13px] text-ink-soft">
             Service
             <select
@@ -87,7 +87,7 @@ export function FastPath(props: {
       <form action={fastPay} className="flex flex-1 flex-col">
         <input type="hidden" name="serviceId" value={props.serviceId} />
         <input type="hidden" name="stylist" value={props.stylistValue} />
-        <fieldset className="flex flex-col gap-3 px-5 pt-6 lg:px-0">
+        <fieldset className="flex flex-col gap-3 px-5 pt-6 md:px-0">
           <legend className="eyebrow mb-3">{props.slotsHeading}</legend>
           {props.slots.length ? (
             <div className="flex flex-col gap-2">
@@ -113,7 +113,7 @@ export function FastPath(props: {
           </a>
         </fieldset>
 
-        <div className="flex flex-col gap-2.5 px-5 pt-7 lg:px-0">
+        <div className="flex flex-col gap-2.5 px-5 pt-7 md:px-0">
           <Split size="sm" now={props.now} onDay={props.onDay} />
           <div className="flex justify-between text-[13px] text-ink-soft">
             <span>{props.depositLine}</span>
@@ -122,7 +122,7 @@ export function FastPath(props: {
           <div className="text-[13px] text-ink-soft">Total {props.total}</div>
         </div>
 
-        <div className="mt-auto flex flex-col gap-2.5 px-5 pt-6 pb-7 lg:mt-10 lg:px-0">
+        <div className="mt-auto flex flex-col gap-2.5 px-5 pt-6 pb-7 lg:mt-10 md:px-0">
           <PayButton label={props.payLabel} disabled={!props.slots.length} />
           <p className="text-center text-xs text-ink-soft">{props.footnote}</p>
         </div>

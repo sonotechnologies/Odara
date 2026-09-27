@@ -29,7 +29,7 @@ export function ServicePicker({
       {Object.entries(hidden).map(([k, v]) => (
         <input key={k} type="hidden" name={k} value={v} />
       ))}
-      <fieldset className="flex-1 px-5 pb-8 lg:mx-auto lg:w-full lg:max-w-[640px] lg:px-0">
+      <fieldset className="flex-1 px-5 pb-8 md:mx-auto md:w-full md:max-w-[640px] md:px-0">
         <legend className="sr-only">Choose a service</legend>
         {categories.map((cat) => (
           <div key={cat.name} role="group" aria-label={cat.name}>

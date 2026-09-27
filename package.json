@@ -13,7 +13,8 @@
     "db:migrate": "tsx db/migrate.ts",
     "db:seed": "tsx db/seed.ts",
     "db:reset": "tsx db/reset.ts && npm run db:migrate && npm run db:seed",
-    "photos:pick": "tsx scripts/pick-photos.ts"
+    "photos:pick": "tsx scripts/pick-photos.ts",
+    "studio:owner": "tsx scripts/studio-owner.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",

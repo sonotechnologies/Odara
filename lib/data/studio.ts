@@ -169,3 +169,9 @@ export async function outbox(status?: 'queued' | 'sent' | 'failed' | 'cancelled'
 }
 
 export const isOpenDay = (key: DateKey, hours: Record<number, unknown>) => !!hours[weekdayOfKey(key)]
+
+/** Just the number, for the sidebar badge. */
+export async function failedMessageCount() {
+  const [row] = await getDb().select({ n: count() }).from(messages).where(eq(messages.status, 'failed'))
+  return Number(row?.n ?? 0)
+}

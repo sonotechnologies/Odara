@@ -26,9 +26,6 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = { themeColor: '#f4efe6', width: 'device-width', initialScale: 1 }
 
-// Everything reads live availability; nothing is prerendered at build time.
-export const dynamic = 'force-dynamic'
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${garamond.variable} ${vietnam.variable}`}>

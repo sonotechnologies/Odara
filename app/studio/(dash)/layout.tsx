@@ -3,7 +3,7 @@ import { logout } from '../actions'
 import { StudioSideNav, StudioTabBar } from '@/components/studio-nav'
 import { Wordmark } from '@/components/ui'
 import { salon } from '@/config/salon'
-import { outbox } from '@/lib/data/studio'
+import { failedMessageCount } from '@/lib/data/studio'
 import { todayHoursLine } from '@/lib/hours'
 import { requireOwner } from '@/lib/studio-auth'
 import { todayKey, weekdayOfKey } from '@/lib/time'
@@ -12,7 +12,7 @@ export const metadata: Metadata = { title: { default: 'Studio', template: `%s ·
 
 export default async function StudioLayout({ children }: { children: React.ReactNode }) {
   const owner = await requireOwner()
-  const { counts } = await outbox('failed')
+  const failed = await failedMessageCount()
   return (
     <div className="flex min-h-dvh flex-col lg:grid lg:grid-cols-[220px_minmax(0,1fr)]">
       {/* Mobile top bar */}
@@ -33,7 +33,7 @@ export default async function StudioLayout({ children }: { children: React.React
           <Wordmark href="/studio" className="text-[30px]" />
           <span className="text-[11px] uppercase tracking-[0.14em] text-ink-soft">Studio</span>
         </div>
-        <StudioSideNav badge={counts.failed} />
+        <StudioSideNav badge={failed} />
         <div className="mt-auto flex flex-col gap-4 text-xs leading-[1.6] text-ink-soft">
           <div>
             {salon.address.area}

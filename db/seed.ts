@@ -7,6 +7,7 @@
  * Deterministic: a fixed PRNG seed produces the same salon every time.
  */
 import 'dotenv/config'
+import { createHash } from 'node:crypto'
 import { drizzle } from 'drizzle-orm/node-postgres'
 import { Pool } from 'pg'
 import * as schema from './schema'
@@ -20,6 +21,15 @@ import { addDaysToKey, atSalonTime, todayKey, weekdayOfKey } from '../lib/time'
 const pool = new Pool({ connectionString: process.env.DATABASE_URL })
 const db = drizzle({ client: pool, schema })
 const APP = process.env.APP_URL ?? 'http://localhost:3000'
+
+/**
+ * Stable ids for the catalogue, derived from slugs, so re-seeding never
+ * invalidates ids the app has cached (see lib/data/catalog.ts).
+ */
+const stableId = (kind: string, slug: string) => {
+  const h = createHash('sha256').update(`odara:${kind}:${slug}`).digest('hex')
+  return `${h.slice(0, 8)}-${h.slice(8, 12)}-4${h.slice(13, 16)}-8${h.slice(17, 20)}-${h.slice(20, 32)}`
+}
 
 // ── Deterministic randomness ──────────────────────────────────
 let seed = 20261007
@@ -134,6 +144,7 @@ async function main() {
     .insert(schema.services)
     .values(
       SERVICES.map(([category, slug, name, durationMin, naira, description, featured], i) => ({
+        id: stableId('service', slug),
         category,
         slug,
         name,
@@ -151,7 +162,7 @@ async function main() {
   // Stylists, hours, services
   const sty = await db
     .insert(schema.stylists)
-    .values(STYLISTS.map((s, i) => ({ slug: s.slug, name: s.name, specialties: s.specialties, bio: s.bio, sortOrder: i })))
+    .values(STYLISTS.map((s, i) => ({ id: stableId('stylist', s.slug), slug: s.slug, name: s.name, specialties: s.specialties, bio: s.bio, sortOrder: i })))
     .returning()
   const styBySlug = Object.fromEntries(sty.map((s) => [s.slug, s]))
   for (const s of STYLISTS) {

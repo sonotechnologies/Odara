@@ -69,7 +69,7 @@ export default async function Staff({ searchParams }: { searchParams: Promise<{ 
                         max={salonH.close}
                         step={1800}
                         aria-label={`${DAY[wd]} start`}
-                        className="w-[92px] bg-transparent text-[13px] tabular [&::-webkit-calendar-picker-indicator]:hidden"
+                        className="w-[74px] bg-transparent text-xs tabular sm:w-[92px] sm:text-[13px] [&::-webkit-calendar-picker-indicator]:hidden"
                       />
                       –
                       <input
@@ -80,7 +80,7 @@ export default async function Staff({ searchParams }: { searchParams: Promise<{ 
                         max={salonH.close}
                         step={1800}
                         aria-label={`${DAY[wd]} end`}
-                        className="w-[92px] bg-transparent text-[13px] tabular [&::-webkit-calendar-picker-indicator]:hidden"
+                        className="w-[74px] bg-transparent text-xs tabular sm:w-[92px] sm:text-[13px] [&::-webkit-calendar-picker-indicator]:hidden"
                       />
                     </span>
                   </>
@@ -107,7 +107,7 @@ export default async function Staff({ searchParams }: { searchParams: Promise<{ 
               const lastDay = dateKeyOf(new Date(t.endsAt.getTime() - 1))
               const oneDay = dateKeyOf(t.startsAt) === lastDay
               return (
-                <div key={t.id} className="flex items-center justify-between gap-3 rounded-[2px] bg-parchment px-3.5 py-3">
+                <div key={t.id} className="flex flex-col gap-2 rounded-[2px] bg-parchment px-3.5 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
                   <div className="flex flex-col gap-0.5">
                     <div className="text-sm">{oneDay ? fmtDay(t.startsAt) : `${fmtDay(t.startsAt)} – ${fmtDay(new Date(t.endsAt.getTime() - 1))}`}</div>
                     <div className="text-xs text-ink-soft">
@@ -115,7 +115,7 @@ export default async function Staff({ searchParams }: { searchParams: Promise<{ 
                       {t.reason ? ` · ${t.reason}` : ''}
                     </div>
                   </div>
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center justify-between gap-4">
                     <span className={cx('text-xs', t.clashes ? 'text-rust' : 'text-ink-soft')}>
                       {t.clashes ? `${t.clashes} booking${t.clashes > 1 ? 's' : ''} to move` : '0 clashes'}
                     </span>

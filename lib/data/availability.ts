@@ -79,3 +79,19 @@ export async function getSlotsForRange(args: {
 }
 
 export const horizonDays = salon.booking.horizonDays
+
+/** Each stylist's first open start time, from one load of everyone's calendar. */
+export async function nextOpenPerStylist(args: { stylistIds: string[]; durationMin: number; fromKey: DateKey; days: number; now?: Date }) {
+  const now = args.now ?? new Date()
+  const sd = await loadStylistDays(args.stylistIds, args.fromKey, addDaysToKey(args.fromKey, args.days - 1), now)
+  return Object.fromEntries(
+    sd.map((s) => {
+      for (let i = 0; i < args.days; i++) {
+        const day = getDaySlots({ dateKey: addDaysToKey(args.fromKey, i), durationMin: args.durationMin, stylists: [s], now })
+        const open = day.slots.find((x) => x.available)
+        if (open) return [s.id, open.startsAt]
+      }
+      return [s.id, null]
+    }),
+  ) as Record<string, Date | null>
+}

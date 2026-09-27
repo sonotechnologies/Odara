@@ -16,7 +16,7 @@ export default async function FindBooking({ searchParams }: { searchParams: Prom
   return (
     <div className="flex min-h-dvh flex-col">
       <BookingTop back={{ href: '/', label: 'Close' }} />
-      <div className="flex flex-1 flex-col px-5 pt-12 lg:mx-auto lg:w-full lg:max-w-[480px] lg:px-0">
+      <div className="flex flex-1 flex-col px-5 pt-12 md:mx-auto md:w-full md:max-w-[480px] md:px-0">
         <h1 className="font-serif text-4xl leading-[1.1]">Manage a booking</h1>
         <p className="mt-3 text-[15px] font-light leading-[1.6] text-ink-body">Your reference is in the WhatsApp receipt we sent when you paid the deposit.</p>
         <form action={findBooking} className="mt-10 flex flex-col gap-6">

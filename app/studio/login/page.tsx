@@ -15,8 +15,11 @@ export default async function StudioLogin({ searchParams }: { searchParams: Prom
         </div>
         <LoginForm
           next={next}
-          email={process.env.STUDIO_DEMO_EMAIL ?? 'owner@odara.demo'}
-          password={process.env.STUDIO_DEMO_PASSWORD ?? 'odara-demo'}
+          demo={
+            process.env.STUDIO_SHOW_DEMO_LOGIN === 'false'
+              ? null
+              : { email: process.env.STUDIO_DEMO_EMAIL ?? 'owner@odara.demo', password: process.env.STUDIO_DEMO_PASSWORD ?? 'odara-demo' }
+          }
         />
       </div>
     </div>

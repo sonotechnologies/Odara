@@ -28,7 +28,7 @@ export default async function BookAgain({ searchParams }: { searchParams: SP }) 
     return (
       <>
         <BookingTop back={{ href: '/', label: 'Close' }} />
-        <div className="flex flex-1 flex-col px-5 pt-9 pb-7 lg:mx-auto lg:w-full lg:max-w-[480px] lg:px-0 lg:pt-16">
+        <div className="flex flex-1 flex-col px-5 pt-9 pb-7 md:mx-auto md:w-full md:max-w-[480px] md:px-0 lg:pt-16">
           <h1 className="font-serif text-4xl leading-[1.1]">Book again.</h1>
           <p className="mt-2 mb-10 text-sm text-ink-soft">Been before? Confirm your number and we’ll have your usual ready.</p>
           <OtpForm prefix={salon.phone.prefix} example={salon.phone.example} demoPhone="+234 803 555 0192" />
@@ -59,8 +59,8 @@ export default async function BookAgain({ searchParams }: { searchParams: SP }) 
   return (
     <>
       <BookingTop back={{ href: '/', label: 'Close' }} right={<span />} />
-      <div className="flex flex-1 flex-col lg:mx-auto lg:w-full lg:max-w-[520px]">
-        <div className="flex flex-col gap-1.5 px-5 pt-9 pb-6 lg:px-0">
+      <div className="flex flex-1 flex-col md:mx-auto md:w-full md:max-w-[520px]">
+        <div className="flex flex-col gap-1.5 px-5 pt-9 pb-6 md:px-0">
           <h1 className="font-serif text-4xl leading-[1.1]">Welcome back, {first}.</h1>
           <p className="text-sm text-ink-soft">{same ? 'Same again?' : 'Here’s what’s open.'}</p>
         </div>
@@ -85,7 +85,7 @@ export default async function BookAgain({ searchParams }: { searchParams: SP }) 
           footnote={`Receipt to ${maskPhone(client.phone)} · free to reschedule until ${salon.policy.freeChangeHours}h before`}
           moreHref={`/book/time?service=${svc.slug}&stylist=${stylist?.slug ?? 'any'}`}
         />
-        <form action={signOutClient} className="px-5 pb-7 text-center lg:px-0">
+        <form action={signOutClient} className="px-5 pb-7 text-center md:px-0">
           <button className="text-xs text-ink-soft underline underline-offset-2">Not {first}? Use another number</button>
         </form>
       </div>

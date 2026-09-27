@@ -58,7 +58,7 @@ export default async function ChooseTime({ searchParams }: { searchParams: SP })
   return (
     <>
       <BookingTop step={3} back={{ href: `/book/stylist?service=${service.slug}${named ? `&stylist=${named.slug}` : ''}`, label: 'Back' }} />
-      <div className="flex flex-col gap-2 px-5 pt-8 pb-1 lg:hidden">
+      <div className="flex flex-col gap-2 px-5 pt-8 pb-1 md:mx-auto md:w-full md:max-w-[720px] md:px-0 lg:hidden">
         <h1 className="font-serif text-[34px] leading-[1.15]">When suits you?</h1>
       </div>
       <SlotPicker

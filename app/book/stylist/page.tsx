@@ -2,8 +2,7 @@ import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import { BookingTop, StepTitle } from '@/components/booking/chrome'
 import { StylistPicker } from '@/components/booking/stylist-picker'
-import { nextOpenSlots } from '@/lib/availability'
-import { getSlotsForRange, horizonDays } from '@/lib/data/availability'
+import { horizonDays, nextOpenPerStylist } from '@/lib/data/availability'
 import { getServiceBySlug, listStylists, stylistsForService } from '@/lib/data/catalog'
 import { fmtDayTimeComma, fmtDuration, todayKey } from '@/lib/time'
 import { stylistSlot } from '@/config/photo-slots'
@@ -20,12 +19,8 @@ export default async function ChooseStylist({ searchParams }: { searchParams: Pr
 
   const [qualified, everyone] = await Promise.all([stylistsForService(service.id), listStylists()])
   const from = todayKey()
-  const next = await Promise.all(
-    qualified.map(async (s) => {
-      const days = await getSlotsForRange({ stylistIds: [s.id], durationMin: service.durationMin, fromKey: from, days: horizonDays })
-      return nextOpenSlots(days, 1)[0]?.startsAt ?? null
-    }),
-  )
+  const byStylist = await nextOpenPerStylist({ stylistIds: qualified.map((q) => q.id), durationMin: service.durationMin, fromKey: from, days: horizonDays })
+  const next = qualified.map((q) => byStylist[q.id] ?? null)
   const photos = await getPhotos(qualified.map((s) => stylistSlot(s.slug)))
   const anyNext = next.filter(Boolean).sort((a, b) => a!.getTime() - b!.getTime())[0] ?? null
   const others = everyone.filter((e) => !qualified.some((q) => q.id === e.id)).map((e) => e.name)
@@ -33,7 +28,7 @@ export default async function ChooseStylist({ searchParams }: { searchParams: Pr
   return (
     <>
       <BookingTop step={2} back={{ href: `/book?service=${service.slug}`, label: 'Back' }} />
-      <div className="lg:mx-auto lg:w-full lg:max-w-[640px]">
+      <div className="md:mx-auto md:w-full md:max-w-[640px]">
         <StepTitle sub={`For ${service.name.toLowerCase()}`}>With whom?</StepTitle>
       </div>
       <StylistPicker

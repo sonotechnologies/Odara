@@ -36,6 +36,16 @@ function useCountdown(initial: number) {
   return left
 }
 
+/** At zero, ask the server until it confirms the hold has ended (clocks can differ by a moment). */
+function useExpiryRefresh(left: number, router: ReturnType<typeof useRouter>) {
+  useEffect(() => {
+    if (left !== 0) return
+    router.refresh()
+    const t = setInterval(() => router.refresh(), 1500)
+    return () => clearInterval(t)
+  }, [left, router])
+}
+
 const mmss = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`
 
 export function HoldTimer({ left, when, className }: { left: number; when: string; className?: string }) {
@@ -63,9 +73,7 @@ export function HoldTimer({ left, when, className }: { left: number; when: strin
 export function LiveHoldTimer({ seconds, when, className }: { seconds: number; when: string; className?: string }) {
   const router = useRouter()
   const left = useCountdown(seconds)
-  useEffect(() => {
-    if (left === 0) router.refresh()
-  }, [left, router])
+  useExpiryRefresh(left, router)
   return <HoldTimer left={left} when={when} className={className} />
 }
 
@@ -76,9 +84,7 @@ export function HoldScreen({ v }: { v: HoldView }) {
   const values = state.values ?? { name: v.name, phone: v.phone }
 
   // When the clock runs out, let the server release the slot and show the expired state.
-  useEffect(() => {
-    if (left === 0) router.refresh()
-  }, [left, router])
+  useExpiryRefresh(left, router)
 
   const field = (name: 'name' | 'phone') =>
     cx(
@@ -149,13 +155,13 @@ export function HoldScreen({ v }: { v: HoldView }) {
   return (
     <>
       {/* ── Mobile ─────────────────────────────── */}
-      <div className="flex flex-1 flex-col lg:hidden">
-        <HoldTimer left={left} when={v.whenShort} className="mx-5 mt-4" />
-        <div className="flex flex-col gap-4 px-5 pt-9 pb-7">
+      <div className="flex flex-1 flex-col md:mx-auto md:w-full md:max-w-[560px] lg:hidden">
+        <HoldTimer left={left} when={v.whenShort} className="mx-5 mt-4 md:mx-0" />
+        <div className="flex flex-col gap-4 px-5 pt-9 pb-7 md:px-0">
           <Split now={v.now} onDay={v.onDay} />
           <div className="text-[13px] text-ink-soft">Total {v.total} · deposit comes off your total</div>
         </div>
-        <dl className="mx-5 grid grid-cols-[auto_1fr] gap-x-5 gap-y-2 border-y border-line py-4 text-sm">
+        <dl className="mx-5 md:mx-0 grid grid-cols-[auto_1fr] gap-x-5 gap-y-2 border-y border-line py-4 text-sm">
           <dt className="text-ink-soft">Service</dt>
           <dd>{v.service}</dd>
           <dt className="text-ink-soft">Stylist</dt>
@@ -165,13 +171,13 @@ export function HoldScreen({ v }: { v: HoldView }) {
           <dt className="text-ink-soft">When</dt>
           <dd>{v.whenRange}</dd>
         </dl>
-        <div className="px-5 pt-5">
+        <div className="px-5 pt-5 md:px-0">
           <PolicyLines lines={v.policy} />
           <Link href="/policy" className="mt-2 inline-block text-xs text-ink-soft underline underline-offset-2">
             Full policy
           </Link>
         </div>
-        <div className="mt-auto px-5 pt-6 pb-7">{form('m')}</div>
+        <div className="mt-auto px-5 pt-6 pb-7 md:mt-4 md:px-0">{form('m')}</div>
       </div>
 
       {/* ── Desktop ────────────────────────────── */}

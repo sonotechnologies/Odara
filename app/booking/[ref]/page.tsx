@@ -40,12 +40,12 @@ export default async function ManageBooking({ params, searchParams }: { params: 
   const cal = calendarLinks(b)
 
   return (
-    <div className="flex min-h-dvh flex-col lg:mx-auto lg:w-full lg:max-w-[560px]">
+    <div className="flex min-h-dvh flex-col md:mx-auto md:w-full md:max-w-[560px]">
       <header className="flex h-14 flex-none items-center justify-center lg:h-[88px]">
         <Wordmark className="text-[21px] lg:text-[30px]" />
       </header>
 
-      <div className="flex flex-col gap-3 px-5 pt-9 pb-6 lg:px-0">
+      <div className="flex flex-col gap-3 px-5 pt-9 pb-6 md:px-0">
         <span className="self-start">
           <StatusChip status={b.status} />
         </span>
@@ -56,18 +56,18 @@ export default async function ManageBooking({ params, searchParams }: { params: 
       </div>
 
       {sp.moved && (
-        <p role="status" className="mx-5 mb-4 animate-fade-up bg-olive-mist px-4 py-3 text-[13px] text-olive lg:mx-0">
+        <p role="status" className="mx-5 mb-4 animate-fade-up bg-olive-mist px-4 py-3 text-[13px] text-olive md:mx-0">
           Moved. Your deposit came with you, and a new reminder is set.
         </p>
       )}
       {sp.error && (
-        <p role="alert" className="mx-5 mb-4 bg-rust-mist px-4 py-3 text-[13px] text-rust lg:mx-0">
+        <p role="alert" className="mx-5 mb-4 bg-rust-mist px-4 py-3 text-[13px] text-rust md:mx-0">
           That change couldn’t be made. The booking is as shown below.
         </p>
       )}
 
       <KeyRows
-        className="mx-5 lg:mx-0"
+        className="mx-5 md:mx-0"
         rows={[
           ['Reference', <span key="r" className="font-mono tracking-[0.08em]">{b.ref}</span>],
           ['Deposit paid', amount],
@@ -76,7 +76,7 @@ export default async function ManageBooking({ params, searchParams }: { params: 
       />
 
       {cancelled ? (
-        <div className="mx-5 mt-7 flex flex-col gap-3 lg:mx-0">
+        <div className="mx-5 mt-7 flex flex-col gap-3 md:mx-0">
           <div className="flex flex-col gap-1.5 bg-parchment p-5">
             <div className="text-[11px] uppercase tracking-[0.1em] text-ink-soft">What happens to your deposit</div>
             <p className="font-serif text-2xl leading-[1.2]">
@@ -105,7 +105,7 @@ export default async function ManageBooking({ params, searchParams }: { params: 
         <>
           <div
             className={cx(
-              'mx-5 mt-7 flex flex-col gap-1.5 p-5 lg:mx-0',
+              'mx-5 mt-7 flex flex-col gap-1.5 p-5 md:mx-0',
               rule.tone === 'free' && 'bg-olive-mist',
               rule.tone === 'locked' && 'bg-rust-mist',
               rule.tone === 'closed' && 'bg-parchment',
@@ -120,12 +120,12 @@ export default async function ManageBooking({ params, searchParams }: { params: 
             </p>
           </div>
           {lastMsg && (
-            <div className="mx-5 mt-4 flex flex-col gap-2 bg-chat p-4 lg:mx-0">
+            <div className="mx-5 mt-4 flex flex-col gap-2 bg-chat p-4 md:mx-0">
               <div className="text-[11px] uppercase tracking-[0.08em] text-ink-soft">Sent to your WhatsApp</div>
               <MessageBubble from={salon.name} body={lastMsg.body} />
             </div>
           )}
-          <div className="mt-auto flex flex-col gap-2.5 px-5 pt-10 pb-7 lg:mt-10 lg:px-0">
+          <div className="mt-auto flex flex-col gap-2.5 px-5 pt-10 pb-7 lg:mt-10 md:px-0">
             {move.allowed && (
               <Link href={`/booking/${b.ref}/reschedule`} className={btn.primary}>
                 Reschedule

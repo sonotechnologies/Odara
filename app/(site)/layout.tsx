@@ -1,6 +1,9 @@
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
 
+// Marketing pages are prerendered and served from the CDN, refreshed every 10 minutes.
+export const revalidate = 600
+
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
     <>

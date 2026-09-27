@@ -30,7 +30,7 @@ export default async function ChooseService({ searchParams }: { searchParams: SP
   return (
     <>
       <BookingTop step={1} back={{ href: stylist ? '/stylists' : '/', label: 'Close' }} />
-      <div className="lg:mx-auto lg:w-full lg:max-w-[640px]">
+      <div className="md:mx-auto md:w-full md:max-w-[640px]">
         <StepTitle sub={stylist ? `With ${stylist.name}` : undefined}>What are we doing?</StepTitle>
         {sp.service && !categories.some((c) => c.items.some((i) => i.slug === sp.service)) && (
           <Notice tone="rust">That service isn’t available. Choose another.</Notice>

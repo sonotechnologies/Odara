@@ -136,8 +136,7 @@ export default async function Today({ searchParams }: { searchParams: Promise<{ 
                             <span className="hidden text-[11px] font-normal whitespace-nowrap opacity-85 lg:inline">{statusLabel(b.status)}</span>
                           </span>
                           <span className="truncate text-[9px] leading-[1.2] opacity-80 lg:text-xs lg:opacity-85">
-                            <span className="lg:hidden">{b.serviceName.split(' ')[0]}</span>
-                            <span className="hidden lg:inline">{b.serviceName}</span>
+                            {b.serviceName}
                           </span>
                           <span className="hidden text-[11px] opacity-75 lg:block">
                             {fmtTime(b.startsAt)} – {fmtTime(b.endsAt)}

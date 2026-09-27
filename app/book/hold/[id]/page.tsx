@@ -39,22 +39,22 @@ export default async function HoldPage({ params, searchParams }: { params: Param
     return (
       <>
         <BookingTop step={4} back={back} />
-        <div className="flex flex-1 flex-col lg:mx-auto lg:w-full lg:max-w-[640px]">
-          <div className="mx-5 mt-4 flex h-9 items-center rounded-[2px] bg-parchment px-3.5 text-[13px] text-ink-soft tabular lg:mx-0">Slot held for 0:00</div>
-          <div className="flex animate-fade-up flex-col gap-3.5 px-5 pt-14 lg:px-0">
+        <div className="flex flex-1 flex-col md:mx-auto md:w-full md:max-w-[640px]">
+          <div className="mx-5 mt-4 flex h-9 items-center rounded-[2px] bg-parchment px-3.5 text-[13px] text-ink-soft tabular md:mx-0">Slot held for 0:00</div>
+          <div className="flex animate-fade-up flex-col gap-3.5 px-5 pt-14 md:px-0">
             <h1 className="font-serif text-[38px] leading-[1.1] lg:text-5xl">Your hold has ended.</h1>
             <p className="text-[15px] font-light leading-[1.65] text-ink-body">
               We kept {fmtDay(hold.startsAt)} at {fmtTime(hold.startsAt)} for you for {salon.booking.holdMinutes} minutes. Nothing was charged.
             </p>
           </div>
-          <div className="mx-5 mt-8 flex items-center justify-between border-y border-line py-[18px] lg:mx-0">
+          <div className="mx-5 mt-8 flex items-center justify-between border-y border-line py-[18px] md:mx-0">
             <div className="flex flex-col gap-[3px]">
               <div className="text-[15px]">{whenShort}</div>
               <div className={cx('text-[13px]', stillOpen ? 'text-olive' : 'text-rust')}>{stillOpen ? 'Still open' : 'Taken since'}</div>
             </div>
             <div className="text-[13px] text-ink-soft">{hold.service.name}</div>
           </div>
-          <div className="mt-auto flex flex-col gap-2.5 px-5 pt-4 pb-7 lg:mt-10 lg:px-0">
+          <div className="mt-auto flex flex-col gap-2.5 px-5 pt-4 pb-7 lg:mt-10 md:px-0">
             {stillOpen && (
               <form action={holdAgain}>
                 <input type="hidden" name="id" value={hold.id} />
@@ -70,7 +70,7 @@ export default async function HoldPage({ params, searchParams }: { params: Param
     )
   }
 
-  const secondsLeft = Math.max(0, Math.round((hold.holdExpiresAt!.getTime() - now.getTime()) / 1000))
+  const secondsLeft = Math.max(0, Math.ceil((hold.holdExpiresAt!.getTime() - now.getTime()) / 1000))
   const client = hold.client ?? (await getClientSession().then((s) => (s ? getClient(s.clientId) : null)))
   const { dueNowKobo, creditUsedKobo } = applyCredit(hold.depositKobo, client?.creditKobo ?? 0)
   const nowAmount = formatMoney(hold.depositKobo)
@@ -81,9 +81,9 @@ export default async function HoldPage({ params, searchParams }: { params: Param
     return (
       <>
         <BookingTop step={4} back={back} />
-        <div className="flex flex-1 flex-col lg:mx-auto lg:w-full lg:max-w-[640px]">
+        <div className="flex flex-1 flex-col md:mx-auto md:w-full md:max-w-[640px]">
           <FailedTimer seconds={secondsLeft} when={whenShort} />
-          <div className="flex animate-fade-up flex-col gap-3.5 px-5 pt-14 lg:px-0">
+          <div className="flex animate-fade-up flex-col gap-3.5 px-5 pt-14 md:px-0">
             <div className="text-xs uppercase tracking-[0.1em] text-rust">Payment didn’t go through</div>
             <h1 className="font-serif text-[38px] leading-[1.1] lg:text-5xl">Nothing was taken.</h1>
             <p className="text-[15px] font-light leading-[1.65] text-ink-body">
@@ -91,10 +91,10 @@ export default async function HoldPage({ params, searchParams }: { params: Param
               again.
             </p>
           </div>
-          <div className="mx-5 mt-7 rounded-[2px] bg-rust-mist px-4 py-3.5 text-[13px] leading-[1.5] text-rust lg:mx-0">
+          <div className="mx-5 mt-7 rounded-[2px] bg-rust-mist px-4 py-3.5 text-[13px] leading-[1.5] text-rust md:mx-0">
             {sp.failed === 'card' ? `Card${sp.card ? ` ending ${sp.card}` : ''} · declined by issuer` : sp.failed === 'ussd' ? 'USSD payment not completed' : 'Transfer not received'}
           </div>
-          <div className="mt-auto flex flex-col gap-2.5 px-5 pt-4 pb-7 lg:mt-10 lg:px-0">
+          <div className="mt-auto flex flex-col gap-2.5 px-5 pt-4 pb-7 lg:mt-10 md:px-0">
             <Link href={retry} className={btn.primaryLg}>
               Try again · {formatMoney(dueNowKobo)}
             </Link>
@@ -142,5 +142,5 @@ export default async function HoldPage({ params, searchParams }: { params: Param
 }
 
 function FailedTimer({ seconds, when }: { seconds: number; when: string }) {
-  return <LiveHoldTimer seconds={seconds} when={when} className="mx-5 mt-4 lg:mx-0" />
+  return <LiveHoldTimer seconds={seconds} when={when} className="mx-5 mt-4 md:mx-0" />
 }

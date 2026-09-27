@@ -58,7 +58,7 @@ export function BookingTop({
 export function BookingFooter({ title, sub, children, className }: { title: ReactNode; sub?: ReactNode; children: ReactNode; className?: string }) {
   return (
     <div className={cx('sticky bottom-0 z-10 flex-none border-t border-line bg-linen', className)}>
-      <div className="mx-auto flex max-w-[1440px] items-center gap-4 px-5 pt-4 pb-7 lg:h-[104px] lg:justify-end lg:gap-8 lg:px-16 lg:py-0">
+      <div className="mx-auto flex max-w-[1440px] items-center gap-4 px-5 pt-4 pb-7 md:max-w-[720px] md:px-0 lg:h-[104px] lg:max-w-[1440px] lg:justify-end lg:gap-8 lg:px-16 lg:py-0">
         <div className="flex min-w-0 flex-1 flex-col gap-0.5 lg:flex-none lg:text-right" aria-live="polite">
           <div className="truncate text-sm lg:text-[15px]">{title}</div>
           {sub && <div className="truncate text-xs text-ink-soft lg:text-[13px]">{sub}</div>}
@@ -71,7 +71,7 @@ export function BookingFooter({ title, sub, children, className }: { title: Reac
 
 export function StepTitle({ children, sub, className }: { children: ReactNode; sub?: ReactNode; className?: string }) {
   return (
-    <div className={cx('flex flex-col gap-2 px-5 pt-8 pb-2 lg:px-0 lg:pt-12', className)}>
+    <div className={cx('flex flex-col gap-2 px-5 pt-8 pb-2 md:px-0 lg:pt-12', className)}>
       <h1 className="font-serif text-[34px] leading-[1.15] lg:text-[56px] lg:leading-[1.05]">{children}</h1>
       {sub && <p className="text-sm text-ink-soft lg:text-[15px]">{sub}</p>}
     </div>
@@ -83,7 +83,7 @@ export function Notice({ children, tone = 'olive' }: { children: ReactNode; tone
     <div
       role="status"
       className={cx(
-        'mx-5 mt-4 animate-fade-up rounded-[2px] px-4 py-3 text-[13px] leading-[1.5] lg:mx-0',
+        'mx-5 mt-4 animate-fade-up rounded-[2px] px-4 py-3 text-[13px] leading-[1.5] md:mx-0',
         tone === 'olive' ? 'bg-olive-mist text-olive' : 'bg-rust-mist text-rust',
       )}
     >

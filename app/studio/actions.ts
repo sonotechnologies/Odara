@@ -18,7 +18,10 @@ export async function login(_prev: LoginState, formData: FormData): Promise<Logi
   const email = String(formData.get('email') ?? '').trim().toLowerCase()
   const password = String(formData.get('password') ?? '')
   const [owner] = await getDb().select().from(schema.owners).where(eq(schema.owners.email, email))
-  if (!owner || !(await verifyPassword(password, owner.passwordHash))) return { error: 'That email and password don’t match.' }
+  if (!owner || !(await verifyPassword(password, owner.passwordHash))) {
+    await new Promise((r) => setTimeout(r, 600)) // slow down guessing
+    return { error: 'That email and password don’t match.' }
+  }
   await setStudioSession({ ownerId: owner.id, name: owner.name })
   const next = String(formData.get('next') ?? '')
   redirect(next.startsWith('/studio') ? next : '/studio')

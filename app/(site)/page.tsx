@@ -98,7 +98,7 @@ export default async function Home() {
             <span id="h-stylists">Stylists</span>
           </Eyebrow>
         </div>
-        <ul className="mx-auto mt-5 flex max-w-[1440px] snap-x gap-3 overflow-x-auto scroll-pl-6 px-6 pb-2 [scrollbar-width:none] lg:mt-8 lg:grid lg:grid-cols-5 lg:gap-6 lg:overflow-visible lg:px-16">
+        <ul className="mx-auto mt-5 flex max-w-[1440px] snap-x gap-3 overflow-x-auto scroll-pl-6 px-6 pb-2 [scrollbar-width:none] md:grid md:grid-cols-5 md:gap-4 md:overflow-visible lg:mt-8 lg:gap-6 lg:px-16">
           {stylists.map((p) => (
             <li key={p.id} className="flex flex-[0_0_150px] snap-start flex-col gap-2.5 lg:gap-3.5">
               <Link href={`/stylists#${p.slug}`} className="group flex flex-col gap-2.5 lg:gap-3.5">
@@ -142,11 +142,11 @@ export default async function Home() {
               Your deposit holds your chair. The rest is paid on the day.
             </p>
           </div>
-          <ol className="flex flex-col gap-8 lg:grid lg:grid-cols-3">
+          <ol className="flex flex-col gap-8 md:grid md:grid-cols-3 md:gap-6 lg:gap-8">
             {howBookingWorks.map((st) => (
-              <li key={st.n} className="grid grid-cols-[40px_1fr] gap-3 border-t border-line pt-5 lg:flex lg:flex-col lg:border-line-strong lg:pt-6">
+              <li key={st.n} className="grid grid-cols-[40px_1fr] gap-3 border-t border-line pt-5 md:flex md:flex-col md:border-line-strong lg:pt-6">
                 <div className="font-serif text-[26px] leading-none text-olive lg:text-4xl">{st.n}</div>
-                <div className="flex flex-col gap-1.5 lg:gap-3">
+                <div className="flex flex-col gap-1.5 md:gap-3">
                   <div className="text-base font-medium">{st.title}</div>
                   <div className="text-sm font-light leading-[1.6] text-ink-body lg:leading-[1.65]">{st.body}</div>
                 </div>
@@ -157,7 +157,7 @@ export default async function Home() {
       </section>
 
       {/* Policy + hours + map */}
-      <section id="visit" className={`${wrap} flex scroll-mt-4 flex-col gap-[72px] py-[72px] lg:grid lg:grid-cols-3 lg:gap-16 lg:py-[120px]`}>
+      <section id="visit" className={`${wrap} flex scroll-mt-4 flex-col gap-[72px] py-[72px] md:grid md:grid-cols-2 md:gap-12 lg:grid-cols-3 lg:gap-16 lg:py-[120px]`}>
         <div className="flex flex-col gap-4 lg:gap-4">
           <div className="flex items-baseline justify-between">
             <Eyebrow as="h2">Our promise, and yours</Eyebrow>

@@ -27,7 +27,7 @@ export default async function Reschedule({ params }: { params: Promise<{ ref: st
     return (
       <div className="flex min-h-dvh flex-col">
         <BookingTop back={back} />
-        <div className="flex flex-1 flex-col px-5 pt-12 lg:mx-auto lg:w-full lg:max-w-[560px] lg:px-0">
+        <div className="flex flex-1 flex-col px-5 pt-12 md:mx-auto md:w-full md:max-w-[560px] md:px-0">
           <div className="text-xs uppercase tracking-[0.1em] text-rust">Within {salon.policy.freeChangeHours} hours</div>
           <h1 className="mt-3 font-serif text-[38px] leading-[1.1]">Moving now starts a new booking.</h1>
           <p className="mt-4 text-[15px] font-light leading-[1.65] text-ink-body">
@@ -73,7 +73,7 @@ export default async function Reschedule({ params }: { params: Promise<{ ref: st
   return (
     <div className="flex min-h-dvh flex-col">
       <BookingTop back={back} />
-      <div className="flex flex-col gap-2 px-5 pt-8 pb-1 lg:hidden">
+      <div className="flex flex-col gap-2 px-5 pt-8 pb-1 md:mx-auto md:w-full md:max-w-[720px] md:px-0 lg:hidden">
         <h1 className="font-serif text-[34px] leading-[1.15]">Pick a new time.</h1>
         <p className="text-sm text-ink-soft">
           Now {fmtDayTimeComma(b.startsAt)} with {b.stylist.name}. Free to move, the deposit comes with you.
