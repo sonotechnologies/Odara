@@ -1,0 +1,123 @@
+@import 'tailwindcss';
+
+/* Ọdàrà design tokens — see design/project/Odara Design System.dc.html */
+@theme {
+  --color-linen: #f4efe6;      /* page base */
+  --color-parchment: #ebe4d8;  /* surfaces, hover */
+  --color-line: #dad1c1;       /* dividers, borders */
+  --color-line-strong: #c9bfae;
+  --color-stone: #bfb5a3;      /* control borders */
+  --color-ink: #1d1b17;        /* type, primary button */
+  --color-ink-body: #3d3830;   /* long-form body */
+  --color-ink-soft: #5e574c;   /* secondary text (6:1 on linen) */
+  --color-ink-faint: #8a8274;  /* disabled text only */
+  --color-taken: #9c9486;      /* struck-through slot text (disabled) */
+  --color-taken-line: #e3dbcd;
+  --color-closed: #b0a898;
+  --color-olive: #474e31;      /* accent, selected, confirmed */
+  --color-olive-deep: #2f3420;
+  --color-olive-mist: #e3e2d0;
+  --color-olive-line: #d2d1bc;
+  --color-rust: #8b3a26;       /* errors, destructive, no-show */
+  --color-rust-mist: #f0ddd3;
+  --color-rust-line: #d7b9aa;
+  --color-chat: #e6e0d3;
+  --color-bubble: #fbf9f4;
+  --color-stripe-a: #e1d8c8;
+  --color-stripe-b: #ebe4d8;
+  --color-placeholder-ink: #6e665a;
+  --color-footer-soft: #a39b8c;
+  /* The demo checkout is deliberately neutral and unbranded. */
+  --color-co-bg: #f2f1ee;
+  --color-co-line: #e2e0da;
+  --color-co-seg: #e6e4df;
+  --color-co-soft: #6a6862;
+  --color-co-ink: #2b2a27;
+
+  --font-serif: var(--font-garamond), 'EB Garamond', Georgia, serif;
+  --font-sans: var(--font-vietnam), 'Be Vietnam Pro', system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --radius-control: 2px;
+
+  --animate-rise: odRise 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-fade: odFade 600ms ease both;
+  --animate-fade-up: odFadeUp 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  @keyframes odRise {
+    from { opacity: 0; transform: translateY(8px) scale(0.96); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes odFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes odFadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
+@layer base {
+  html {
+    background: var(--color-linen);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    font-family: var(--font-sans);
+    min-height: 100dvh;
+  }
+  /* Visible, calm focus for keyboard users everywhere. */
+  :focus-visible {
+    outline: 2px solid var(--color-olive);
+    outline-offset: 2px;
+  }
+  button:not(:disabled),
+  [role='button'],
+  summary {
+    cursor: pointer;
+  }
+  ::selection {
+    background: var(--color-olive-mist);
+  }
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+  input::placeholder {
+    color: var(--color-ink-faint);
+  }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+@utility eyebrow {
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+@utility stripes {
+  background: repeating-linear-gradient(135deg, var(--color-stripe-a) 0 1px, var(--color-stripe-b) 1px 9px);
+}
+@utility leader {
+  flex: 1;
+  border-bottom: 1px dotted var(--color-stone);
+  transform: translateY(-5px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 1ms !important;
+  }
+}
