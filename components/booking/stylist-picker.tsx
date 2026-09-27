@@ -1,10 +1,11 @@
 'use client'
 
 import { useState } from 'react'
+import { PexelsImage } from '@/components/pexels-image'
 import { btn, cx, Radio } from '@/components/ui'
 import { BookingFooter } from './chrome'
 
-export type PickerStylist = { slug: string; name: string; spec: string; next: string | null }
+export type PickerStylist = { slug: string; name: string; spec: string; next: string | null; photo?: { src: string; avgColor: string } | null }
 
 export function StylistPicker({
   serviceSlug,
@@ -48,7 +49,11 @@ export function StylistPicker({
         {stylists.map((p) => (
           <label key={p.slug} className={row(sel === p.slug)}>
             <input type="radio" name="stylist" value={p.slug} checked={sel === p.slug} onChange={() => setSel(p.slug)} className="sr-only" />
-            <span aria-hidden className="stripes size-14 shrink-0 rounded-full" />
+            {p.photo ? (
+              <PexelsImage src={p.photo.src} alt="" sizes="56px" avgColor={p.photo.avgColor} className="size-14 shrink-0 rounded-full" />
+            ) : (
+              <span aria-hidden className="stripes size-14 shrink-0 rounded-full" />
+            )}
             <span className="flex flex-1 flex-col gap-[3px]">
               <span className="font-serif text-[22px]">{p.name}</span>
               <span className="text-[13px] text-ink-soft">{p.spec}</span>

@@ -6,6 +6,8 @@ import { nextOpenSlots } from '@/lib/availability'
 import { getSlotsForRange, horizonDays } from '@/lib/data/availability'
 import { getServiceBySlug, listStylists, stylistsForService } from '@/lib/data/catalog'
 import { fmtDayTimeComma, fmtDuration, todayKey } from '@/lib/time'
+import { stylistSlot } from '@/config/photo-slots'
+import { getPhotos } from '@/lib/photos'
 
 export const metadata: Metadata = { title: 'Choose a stylist' }
 
@@ -24,6 +26,7 @@ export default async function ChooseStylist({ searchParams }: { searchParams: Pr
       return nextOpenSlots(days, 1)[0]?.startsAt ?? null
     }),
   )
+  const photos = await getPhotos(qualified.map((s) => stylistSlot(s.slug)))
   const anyNext = next.filter(Boolean).sort((a, b) => a!.getTime() - b!.getTime())[0] ?? null
   const others = everyone.filter((e) => !qualified.some((q) => q.id === e.id)).map((e) => e.name)
 
@@ -36,7 +39,7 @@ export default async function ChooseStylist({ searchParams }: { searchParams: Pr
       <StylistPicker
         serviceSlug={service.slug}
         serviceSummary={`${service.name} · ${fmtDuration(service.durationMin)}`}
-        stylists={qualified.map((s, i) => ({ slug: s.slug, name: s.name, spec: s.specialties, next: next[i] ? fmtDayTimeComma(next[i]!) : null }))}
+        stylists={qualified.map((s, i) => ({ slug: s.slug, name: s.name, spec: s.specialties, next: next[i] ? fmtDayTimeComma(next[i]!) : null, photo: photos[stylistSlot(s.slug)] }))}
         anyNext={anyNext ? fmtDayTimeComma(anyNext) : null}
         note={others.length ? `${listJoin(others)} ${others.length === 1 ? 'doesn’t' : 'don’t'} offer ${service.name.toLowerCase()}.` : undefined}
         initial={sp.stylist}

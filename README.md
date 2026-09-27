@@ -133,6 +133,21 @@ tests/               Vitest unit tests
 design/              the original Claude Design handoff: prototypes, chat and both briefs
 ```
 
+## Photos (Pexels)
+
+Every photo spot on the site is defined in [`config/photo-slots.ts`](config/photo-slots.ts), with the Pexels search that fills it and the art direction from the brief. Chosen photos are pinned in [`config/photos.json`](config/photos.json), so the live site shows stable, reviewed images and never needs the API.
+
+```bash
+# add PEXELS_API_KEY=... to .env (free key: https://www.pexels.com/api/)
+npm run photos:pick                    # fill every empty slot with the first unused result
+npm run photos:pick -- --list hero     # see the top 15 candidates for a slot
+npm run photos:pick -- hero 4          # pin candidate #4
+npm run photos:pick -- hero id:1234567 # pin a specific photo from the list
+npm run photos:pick -- --all           # re-pick everything
+```
+
+Commit `config/photos.json` after reviewing. A slot with no pin searches Pexels live (cached for a day), but only if `PEXELS_API_KEY` is set on the server. With neither, the striped art-direction placeholder shows. Images are sized by Pexels' own CDN, and photographers are credited on [`/credits`](app/(site)/credits/page.tsx), linked from the footer.
+
 ## Design
 
 The visual system comes from the Claude Design prototypes in [`design/project`](design/project):
@@ -141,6 +156,6 @@ The visual system comes from the Claude Design prototypes in [`design/project`](
 - **Type:** EB Garamond for headings and the wordmark, Be Vietnam Pro for UI. Both ship the Vietnamese subset, so **Ọ** and **à** render properly.
 - **Shape and depth:** 2px radius on controls, no shadows.
 
-Photos are striped placeholders with art-direction notes until real photography is dropped in.
+Photos come from Pexels (see above). Until they're picked, each spot shows a striped placeholder with its art direction.
 
 Where the build brief and the prototypes disagree, the build brief wins. Notably, knotless braids (6h) take a 50% deposit (₦42,500 now · ₦42,500 on the day), not the 30% shown in the mockups.

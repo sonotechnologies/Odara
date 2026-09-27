@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Placeholder, textLink } from '@/components/ui'
+import { Photo } from '@/components/photo'
+import { textLink } from '@/components/ui'
+import { stylistSlot } from '@/config/photo-slots'
 import { stylistsWithServices } from '@/lib/data/catalog'
 
 export const metadata: Metadata = { title: 'Stylists' }
@@ -13,7 +15,7 @@ export default async function StylistsPage() {
       <ul className="lg:grid lg:grid-cols-2 lg:gap-x-16">
         {stylists.map((p) => (
           <li key={p.id} id={p.slug} className="mx-6 grid scroll-mt-6 grid-cols-[128px_1fr] gap-5 border-t border-line pt-6 pb-8 lg:mx-0 lg:grid-cols-[220px_1fr] lg:gap-8 lg:pt-8 lg:pb-12">
-            <Placeholder className="h-[164px] p-2 text-[10px] leading-[1.4] lg:h-[280px]" note={`portrait of ${p.name}, natural light`} />
+            <Photo slot={stylistSlot(p.slug)} sizes="(min-width: 1024px) 220px, 128px" className="h-[164px] p-2 text-[10px] leading-[1.4] lg:h-[280px]" />
             <div className="flex flex-col gap-2 lg:gap-3">
               <h2 className="font-serif text-[26px] leading-[1.1] lg:text-4xl">{p.name}</h2>
               <div className="text-[13px] text-olive lg:text-sm">{p.specialties}</div>

@@ -8,6 +8,7 @@ export function SiteFooter() {
     ['Stylists', '/stylists'],
     ['Policy', '/policy'],
     ['Manage booking', '/booking'],
+    ['Photo credits', '/credits'],
     ['Instagram', salon.instagram, true],
     ['WhatsApp', `https://wa.me/${salon.whatsapp}`, true],
   ]

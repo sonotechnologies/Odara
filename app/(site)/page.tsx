@@ -1,6 +1,9 @@
 import Link from 'next/link'
 import { salon } from '@/config/salon'
+import { Photo } from '@/components/photo'
 import { btn, Eyebrow, Placeholder, textLink } from '@/components/ui'
+import { stylistSlot } from '@/config/photo-slots'
+import { getPhotos } from '@/lib/photos'
 import { listServices, listStylists } from '@/lib/data/catalog'
 import { groupedHours } from '@/lib/hours'
 import { howBookingWorks, policySummary } from '@/lib/copy'
@@ -12,6 +15,7 @@ const wrap = 'mx-auto max-w-[1440px] px-6 lg:px-16'
 
 export default async function Home() {
   const [services, stylists] = await Promise.all([listServices(), listStylists()])
+  const photos = await getPhotos(['hero', 'gallery-braids', 'gallery-nails', 'gallery-lashes', 'gallery-locs', ...stylists.map((p) => stylistSlot(p.slug))])
   const featured = services.filter((s) => s.featured)
   const hours = groupedHours()
 
@@ -35,9 +39,12 @@ export default async function Home() {
             </Link>
           </div>
         </div>
-        <Placeholder
+        <Photo
+          slot="hero"
+          photo={photos.hero}
+          priority
+          sizes="(min-width: 1024px) 52vw, 100vw"
           className="-mx-6 mt-10 h-[460px] lg:mx-0 lg:mt-0 lg:h-[680px] lg:p-[18px] lg:text-xs"
-          note="hero · silk press catching window light, close crop from the side, warm late-morning tone"
         />
       </section>
 
@@ -95,7 +102,12 @@ export default async function Home() {
           {stylists.map((p) => (
             <li key={p.id} className="flex flex-[0_0_150px] snap-start flex-col gap-2.5 lg:gap-3.5">
               <Link href={`/stylists#${p.slug}`} className="group flex flex-col gap-2.5 lg:gap-3.5">
-                <Placeholder className="h-[190px] p-2.5 text-[10px] leading-[1.4] lg:h-[340px] lg:p-3 lg:text-[11px]" note={`portrait · ${p.name}`} />
+                <Photo
+                  slot={stylistSlot(p.slug)}
+                  photo={photos[stylistSlot(p.slug)]}
+                  sizes="(min-width: 1024px) 18vw, 150px"
+                  className="h-[190px] p-2.5 text-[10px] leading-[1.4] lg:h-[340px] lg:p-3 lg:text-[11px]"
+                />
                 <div className="flex flex-col gap-0.5 lg:gap-1">
                   <div className="font-serif text-xl group-hover:text-olive lg:text-[26px]">{p.name}</div>
                   <div className="text-xs leading-[1.4] text-ink-soft lg:text-[13px]">{p.specialties}</div>
@@ -110,11 +122,11 @@ export default async function Home() {
       <section className={`${wrap} flex flex-col gap-5 pb-[72px] lg:pb-[140px]`} aria-label="Recent work">
         <Eyebrow className="lg:hidden">Recent work</Eyebrow>
         <div className="grid grid-cols-2 gap-2 lg:grid-cols-12 lg:gap-4">
-          <Placeholder className="row-span-2 h-[328px] p-2.5 text-[10px] lg:col-span-5 lg:h-[620px] lg:p-3 lg:text-[11px]" note="knotless braids, back view, soft shadow" />
+          <Photo slot="gallery-braids" photo={photos['gallery-braids']} sizes="(min-width: 1024px) 38vw, 50vw" className="row-span-2 h-[328px] p-2.5 text-[10px] lg:col-span-5 lg:h-[620px] lg:p-3 lg:text-[11px]" />
           <div className="contents lg:col-span-7 lg:grid lg:grid-cols-2 lg:gap-4">
-            <Placeholder className="h-40 p-2.5 text-[10px] lg:h-[302px] lg:p-3 lg:text-[11px]" note="hands, fresh gel nails on linen" />
-            <Placeholder className="h-40 p-2.5 text-[10px] lg:h-[302px] lg:p-3 lg:text-[11px]" note="lashes, eyes closed, macro" />
-            <Placeholder className="col-span-2 h-[200px] p-2.5 text-[10px] lg:h-[302px] lg:p-3 lg:text-[11px]" note="locs, retwisted, texture detail in side light" />
+            <Photo slot="gallery-nails" photo={photos['gallery-nails']} sizes="(min-width: 1024px) 27vw, 50vw" className="h-40 p-2.5 text-[10px] lg:h-[302px] lg:p-3 lg:text-[11px]" />
+            <Photo slot="gallery-lashes" photo={photos['gallery-lashes']} sizes="(min-width: 1024px) 27vw, 50vw" className="h-40 p-2.5 text-[10px] lg:h-[302px] lg:p-3 lg:text-[11px]" />
+            <Photo slot="gallery-locs" photo={photos['gallery-locs']} sizes="(min-width: 1024px) 54vw, 100vw" className="col-span-2 h-[200px] p-2.5 text-[10px] lg:h-[302px] lg:p-3 lg:text-[11px]" />
           </div>
         </div>
       </section>
